@@ -9,3 +9,8 @@ ERM диаграмма исходники https://app.diagrams.net/#G1GInVYkdKGf
 Для старта приложения нужно выполнить таску maven <b>Plugin -> jetty -> run</b> или командой <b>mvn jetty:run</b> <br>
 После запуска приложение будет доступано по пути http://localhost:8080/clinic-automation <br>
 Проверить, что серверная часть корректно запустилась можно по ссылке http://localhost:8080/clinic-automation/api/demo <br>
+
+
+Полезности:<br>
+Тут написано, как вносить изменения в исходный репозиторий: <br>
+https://jeka.by/post/1053/github-send-PR-to-other-repository/
