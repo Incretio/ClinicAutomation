@@ -1,5 +1,6 @@
 # ClinicAutomation
 
+Презентация проекта: https://docs.google.com/presentation/d/1flem8GN40Bp6Lbe5t5Ei96XckUyKGpH2rtlNaJB0KK4
 Описание и ТЗ: https://docs.google.com/document/d/1QwyHvimviVqugUX_ptHcNGcyinc9yjzVR4Duo-EDUAg <br>
 UI и описание API: https://docs.google.com/spreadsheets/d/1XiUCz5fJXuyNlKc5E11A3qLy4L1ktISXqL5RS2tydNU <br>
 '    'Исходники: https://app.moqups.com/unsaved/0752895b/edit/page/ad64222d5<br>
@@ -14,14 +15,3 @@ ERM диаграмма исходники https://app.diagrams.net/#G1GInVYkdKGf
 Полезности:<br>
 Тут написано, как вносить изменения в исходный репозиторий: <br>
 https://jeka.by/post/1053/github-send-PR-to-other-repository/
-
-```
-Состав команды:
-@730664057 (Veranda): фронт
-@ainn0ttfue :         фронт
-@a_n_d_r_e_y_1_1 :    java, субд
-@Incretio :           архитектура, java 
-@MyNameIsMerch :      java
-@dbragari :           java
-@SolopovAleksey :     java
-```
