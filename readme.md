@@ -14,3 +14,14 @@ ERM диаграмма исходники https://app.diagrams.net/#G1GInVYkdKGf
 Полезности:<br>
 Тут написано, как вносить изменения в исходный репозиторий: <br>
 https://jeka.by/post/1053/github-send-PR-to-other-repository/
+
+```
+Состав команды:
+@730664057 (Veranda): фронт
+@ainn0ttfue :         фронт
+@a_n_d_r_e_y_1_1 :    java, субд
+@Incretio :           архитектура, java 
+@MyNameIsMerch :      java
+@dbragari :           java
+@SolopovAleksey :     java
+```
