@@ -1,6 +1,6 @@
 # ClinicAutomation
 
-Презентация проекта: https://docs.google.com/presentation/d/1flem8GN40Bp6Lbe5t5Ei96XckUyKGpH2rtlNaJB0KK4
+Презентация проекта: https://docs.google.com/presentation/d/1flem8GN40Bp6Lbe5t5Ei96XckUyKGpH2rtlNaJB0KK4 <br>
 Описание и ТЗ: https://docs.google.com/document/d/1QwyHvimviVqugUX_ptHcNGcyinc9yjzVR4Duo-EDUAg <br>
 UI и описание API: https://docs.google.com/spreadsheets/d/1XiUCz5fJXuyNlKc5E11A3qLy4L1ktISXqL5RS2tydNU <br>
 '    'Исходники: https://app.moqups.com/unsaved/0752895b/edit/page/ad64222d5<br>
