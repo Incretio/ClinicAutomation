@@ -1,31 +1,27 @@
-package gb.internship.entity;
+package gb.internship.dto;
 
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import gb.internship.entity.Client;
+import gb.internship.entity.Sex;
+
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
-@Entity
-@Table (name = "Client")
-public class Client {
-    @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+public class ClientDto {
     private int id;
-    @OneToMany(mappedBy = "client")
-    private Set<Invoice> invoices = new HashSet<>();
     private String name;
     private String secondName;
     private String patronymic;
-    @Temporal(TemporalType.DATE)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
     private Date birthDate;
-    private char sex;
+    private Sex sex;
 
-    public Set<Invoice> getInvoices() {
-        return invoices;
-    }
-
-    public void setInvoices(Set<Invoice> invoices) {
-        this.invoices = invoices;
+    public ClientDto(Client client) {
+        this.id = client.getId();
+        this.name = client.getName();
+        this.secondName = client.getSecondName();
+        this.patronymic = client.getPatronymic();
+        this.birthDate = client.getBirthDate();
+        this.sex = client.getSex();
     }
 
     public int getId() {
@@ -69,11 +65,11 @@ public class Client {
     }
 
     public Sex getSex() {
-        return sex == 'm' ? Sex.MALE : Sex.FEMALE;
+        return sex;
     }
 
     public void setSex(Sex sex) {
-        this.sex = sex == Sex.MALE ? 'm' : 'f';
+        this.sex = sex;
     }
 }
 
