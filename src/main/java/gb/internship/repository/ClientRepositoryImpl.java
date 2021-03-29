@@ -5,11 +5,11 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.inject.Singleton;
 import java.util.List;
 
-@ApplicationScoped
+@Singleton
 public class ClientRepositoryImpl implements ClientRepository {
 
     @Inject

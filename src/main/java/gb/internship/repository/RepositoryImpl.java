@@ -8,9 +8,9 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Singleton;
 
-@ApplicationScoped
+@Singleton
 public class RepositoryImpl implements Repository {
 
     private SessionFactory sessionFactory;
