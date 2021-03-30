@@ -22,7 +22,7 @@ public class DemoController {
     public String doGet() {
         Client client = new Client();
         client.setId(159);
-        List<String> list = Arrays.asList("one_value", "two_alue", "three_value");
+        List<String> list = Arrays.asList("one_value", "two_value", "three_value");
         Map<String, Object> variables = new HashMap<>();
         variables.put("demo_parameter", "demo_parameter_value");
         variables.put("demo_object", client);
