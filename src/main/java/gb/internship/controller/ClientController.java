@@ -1,24 +1,26 @@
 package gb.internship.controller;
 
-import gb.internship.dto.ClientDto;
 import gb.internship.service.ClientService;
+import gb.internship.view.Templatable;
+import gb.internship.view.TemplateType;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-import java.util.List;
+import java.util.Collections;
+import java.util.Map;
 
 @Path ("clients")
 public class ClientController {
 
     @Inject
     private ClientService clientService;
+    @Inject
+    private Templatable templatable;
 
     @GET
-    @Produces ({ MediaType.APPLICATION_JSON })
-    public List<ClientDto> getClients() {
-        return clientService.getClients();
+    public String getClients() {
+        Map<String, Object> variables = Collections.singletonMap("clients", clientService.getClients());
+        return templatable.template(TemplateType.CLIENTS, variables);
     }
 }
