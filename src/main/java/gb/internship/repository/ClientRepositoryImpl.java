@@ -15,6 +15,7 @@ public class ClientRepositoryImpl implements ClientRepository {
     @Inject
     private Repository repository;
 
+    @Override
     public List<Client> getClients() {
         Session session = repository.openSession();
         Transaction transaction = session.beginTransaction();

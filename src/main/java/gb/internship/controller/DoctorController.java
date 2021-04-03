@@ -5,8 +5,10 @@ import gb.internship.view.Templatable;
 import gb.internship.view.TemplateType;
 
 import javax.inject.Inject;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import java.util.Collections;
 import java.util.Map;
 
@@ -22,5 +24,11 @@ public class DoctorController {
     public String getDoctors() {
         Map<String, Object> variables = Collections.singletonMap("doctors", doctorService.getDoctors());
         return templatable.template(TemplateType.DOCTORS, variables);
+    }
+
+    @DELETE
+    @Path("{doctorId}")
+    public void delete(@PathParam("doctorId") int doctorId) {
+        doctorService.delete(doctorId);
     }
 }

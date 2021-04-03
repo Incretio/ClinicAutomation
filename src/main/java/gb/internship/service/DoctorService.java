@@ -7,5 +7,5 @@ import java.util.List;
 public interface DoctorService {
 
     List<DoctorDto> getDoctors();
-
+    void delete(int doctorId);
 }

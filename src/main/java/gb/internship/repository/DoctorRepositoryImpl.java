@@ -15,13 +15,25 @@ public class DoctorRepositoryImpl implements DoctorRepository {
     @Inject
     private Repository repository;
 
+    @Override
     public List<Doctor> getDoctors() {
-        Session session = repository.openSession();
-        Transaction transaction = session.beginTransaction();
-        Query<Doctor> query = session.createQuery("from Doctor", Doctor.class); //You will get Weayher object
-        List<Doctor> result = query.list();
-        transaction.commit();
-        return result;
+        try (Session session = repository.openSession()) {
+            Transaction transaction = session.beginTransaction();
+            Query<Doctor> query = session.createQuery("from Doctor", Doctor.class); //You will get Weayher object
+            List<Doctor> result = query.list();
+            transaction.commit();
+            return result;
+        }
+    }
+
+    @Override
+    public void delete(int doctorId) {
+        try (Session session = repository.openSession()) {
+            Transaction transaction = session.beginTransaction();
+            Doctor doctor = session.load(Doctor.class, doctorId);
+            session.delete(doctor);
+            transaction.commit();
+        }
     }
 
 }
