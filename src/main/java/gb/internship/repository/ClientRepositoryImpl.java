@@ -1,6 +1,7 @@
 package gb.internship.repository;
 
 import gb.internship.entity.Client;
+import gb.internship.entity.Doctor;
 import gb.internship.entity.Sex;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
@@ -43,6 +44,16 @@ public class ClientRepositoryImpl implements ClientRepository {
             if (session != null) session.close();
         }
 
+    }
+
+    @Override
+    public void delete(int clientId) {
+        try (Session session = repository.openSession()) {
+            Transaction transaction = session.beginTransaction();
+            Client client = session.load(Client.class, clientId);
+            session.delete(client);
+            transaction.commit();
+        }
     }
 
 }

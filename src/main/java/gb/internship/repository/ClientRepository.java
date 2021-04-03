@@ -8,5 +8,5 @@ public interface ClientRepository {
 
     List<Client> getClients();
     void addClient(Client client);
-
+    void delete(int clientId);
 }
