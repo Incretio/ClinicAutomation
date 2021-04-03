@@ -1,6 +1,7 @@
 package gb.internship.service;
 
 import gb.internship.dto.ClientDto;
+import gb.internship.entity.Client;
 import gb.internship.repository.ClientRepository;
 import org.glassfish.jersey.process.internal.RequestScoped;
 
@@ -18,6 +19,11 @@ public class ClientServiceImpl implements ClientService {
         return clientRepository.getClients().stream()
                                .map(ClientDto::new)
                                .collect(Collectors.toList());
+    }
+
+    @Override
+    public void setClients(String name, String  secondName, String patronymic, String birthDate, String sex) {
+        clientRepository.setClients(name, secondName, patronymic, birthDate, sex);
     }
 
 }

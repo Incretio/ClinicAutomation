@@ -9,7 +9,7 @@ import java.util.Set;
 @Table (name = "Client")
 public class Client {
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int id;
     @OneToMany(mappedBy = "client")
     private Set<Invoice> invoices = new HashSet<>();
@@ -64,16 +64,17 @@ public class Client {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
+    public void setBirthDate(Long birthDate) {
+        this.birthDate = new Date();
+        this.birthDate.setTime(birthDate);
     }
 
     public Sex getSex() {
         return sex == 'm' ? Sex.MALE : Sex.FEMALE;
     }
 
-    public void setSex(Sex sex) {
-        this.sex = sex == Sex.MALE ? 'm' : 'f';
+    public void setSex(String sex) {
+        this.sex = sex.equals("m")  ? 'm' : 'f';
     }
 }
 

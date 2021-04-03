@@ -33,27 +33,29 @@
             </ul>
         </div>
     </div>
-    <table class="table container table-striped table-hover">
+    <table align="center" class="table container table-striped table-hover">
         <thead>
-        <tr>
-            <th scope="col">id</th>
-            <th scope="col">Name</th>
-            <th scope="col">Second name</th>
-            <th scope="col">Patronymic</th>
-            <th scope="col">Birth date</th>
-            <th scope="col">Sex</th>
-        </tr>
+		<td >
+        <form action="/clinic-automation/api/clients/add" method="POST">
+   		<p><b>Name:</b><br>
+		<input type="text" name="name" size="40"></p>
+		<p><b>Second name:</b><br>
+		<input type="text" name="secondName" size="40"></p>
+		<p><b>Patronymic:</b><br>
+		<input type="text" name="patronymic" size="40"></p>
+		<p><b>Birth date:</b><br>
+		<input type="text" name="birthDate" size="40"></p>
+		<p><b>Sex:</b><br>
+		<input type="text" name="sex" size="40"></p>	
+    <input type="submit" value="Отправить">
+</form>
+
+   </td>
+
+
+
         </thead>
-        <tbody>
-            <tr th:each="client: ${clients}">
-                <th scope="row" th:text="${client.id}" />
-                <td th:text="${client.name}" />
-                <td th:text="${client.secondName}" />
-                <td th:text="${client.patronymic}" />
-                <td th:text="${client.birthDate}" />
-                <td th:text="${client.sex}" />
-            </tr>
-        </tbody>
+
     </table>
 </body>
 </html>
