@@ -19,22 +19,33 @@ public class ClientController {
     private Templatable templatable;
 
     @GET
-    public String getClients() {
+    public String clientsPage() {
         Map<String, Object> variables = Collections.singletonMap("clients", clientService.getClients());
         return templatable.template(TemplateType.CLIENTS, variables);
     }
 
     @GET
     @Path ("add")
-    public String pageAddClients() {
-        Map<String, Object> variables = Collections.singletonMap("clients-add", clientService.getClients());
-        return templatable.template(TemplateType.CLIENTSADD, variables);
+    public String addClientPage() {
+        return templatable.template(TemplateType.EDIT_CLIENT);
+    }
+
+    @GET
+    @Path ("edit")
+    public String editClientPage(@QueryParam("clientId") int clientId) {
+        // ToDo: implement getting client by Id and transfer it to template
+        return templatable.template(TemplateType.EDIT_CLIENT);
     }
 
     @POST
     @Path ("add")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public void AddClients(@FormParam("name") String name, @FormParam("secondName") String secondName, @FormParam("patronymic") String patronymic, @FormParam("birthDate") String birthDate, @FormParam("sex") String sex) {
+    public void addClient(
+            @FormParam("name") String name,
+            @FormParam("secondName") String secondName,
+            @FormParam("patronymic") String patronymic,
+            @FormParam("birthDate") String birthDate,
+            @FormParam("sex") String sex) {
         clientService.setClients(name, secondName, patronymic, birthDate, sex);
     }
 }

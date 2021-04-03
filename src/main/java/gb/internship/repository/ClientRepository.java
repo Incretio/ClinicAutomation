@@ -7,6 +7,6 @@ import java.util.List;
 public interface ClientRepository {
 
     List<Client> getClients();
-    void setClients(String name, String  secondName, String patronymic, String birthDate, String sex);
+    void addClient(Client client);
 
 }

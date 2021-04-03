@@ -17,10 +17,10 @@
             </a>
 
             <ul class="nav nav-pills">
-                <li class="nav-item"><a href="#" class="nav-link">Расписание</a></li>
-                <li class="nav-item"><a href="doctors" class="nav-link active">Врачи</a></li>
-                <li class="nav-item"><a href="clients" class="nav-link">Клиенты</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Счета</a></li>
+                <li class="nav-item"><a th:href="@{/api/schedule}" class="nav-link">Расписание</a></li>
+                <li class="nav-item"><a th:href="@{/api/doctors}" class="nav-link active">Врачи</a></li>
+                <li class="nav-item"><a th:href="@{/api/clients}" class="nav-link">Клиенты</a></li>
+                <li class="nav-item"><a th:href="@{/api/invoices}" class="nav-link">Счета</a></li>
             </ul>
         </header>
     </div>
@@ -28,8 +28,8 @@
         <div class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
             <ul class="nav nav-pills">
                 <li class="nav-item"><a href="#" class="btn nav-link">Редактор расписания</a></li>
-                <li class="nav-item"><a href="#" class="btn nav-link">Добавить</a></li>
-                <li class="nav-item"><a href="#" class="btn nav-link">Редактировать</a></li>
+                <li class="nav-item"><a th:href="@{/api/doctors/add}" class="btn nav-link">Добавить</a></li>
+                <li class="nav-item"><a th:href="@{/api/doctors/edit}" class="btn nav-link">Редактировать</a></li>
                 <li class="nav-item"><a href="#" class="btn nav-link">Удалить</a></li>
             </ul>
         </div>

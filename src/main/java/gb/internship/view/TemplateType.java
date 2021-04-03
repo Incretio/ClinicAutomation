@@ -3,7 +3,7 @@ package gb.internship.view;
 public enum TemplateType {
     DEMO("templates/demo.html"),
     CLIENTS("templates/clients.html"),
-    CLIENTSADD("templates/clients-add.html"),
+    EDIT_CLIENT("templates/editClient.html"),
     DOCTORS("templates/doctors.html");
 
     private final String templatePath;

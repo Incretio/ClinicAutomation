@@ -5,5 +5,6 @@ import java.util.Map;
 public interface Templatable {
 
     String template(TemplateType templateType, Map<String, Object> variables);
+    String template(TemplateType templateType);
 
 }
