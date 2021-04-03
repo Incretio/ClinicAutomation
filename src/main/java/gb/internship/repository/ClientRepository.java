@@ -8,5 +8,5 @@ public interface ClientRepository {
 
     List<Client> getClients();
     void setClients(String name, String  secondName, String patronymic, String birthDate, String sex);
-
+    void delete(int clientId);
 }

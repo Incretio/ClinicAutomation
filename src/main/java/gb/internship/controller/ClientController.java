@@ -34,7 +34,14 @@ public class ClientController {
     @POST
     @Path ("add")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public void AddClients(@FormParam("name") String name, @FormParam("secondName") String secondName, @FormParam("patronymic") String patronymic, @FormParam("birthDate") String birthDate, @FormParam("sex") String sex) {
+    public void addClients(@FormParam("name") String name, @FormParam("secondName") String secondName, @FormParam("patronymic") String patronymic, @FormParam("birthDate") String birthDate, @FormParam("sex") String sex) {
         clientService.setClients(name, secondName, patronymic, birthDate, sex);
     }
+
+    @DELETE
+    @Path("{clientId}")
+    public void delete(@PathParam("clientId") int clientId) {
+        clientService.delete(clientId);
+    }
+
 }
