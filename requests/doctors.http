@@ -1,0 +1,7 @@
+###
+GET localhost:8080/clinic-automation/api/doctors
+
+###
+DELETE localhost:8080/clinic-automation/api/doctors/15
+
+###

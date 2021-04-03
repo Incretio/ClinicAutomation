@@ -30,5 +30,4 @@ public class DemoController {
         return templatable.template(TemplateType.DEMO, variables);
     }
 
-
 }
