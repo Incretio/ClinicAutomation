@@ -1,0 +1,17 @@
+<h1>Application started successfully</h1>
+
+<!-- get parameter -->
+<b><span>get parameter</span></b>
+<p th:text="${demo_parameter}" />
+
+<!-- get field of object -->
+<b><span>get field of object</span></b>
+<p th:text="${demo_object.id}" />
+
+<!-- get iterable object -->
+<b><span>demo_iterable_object</span></b>
+<p>
+<tr th:each="iterable_object: ${demo_iterable_object}">
+    <td th:text="${iterable_object}" />
+</tr>
+</p>
