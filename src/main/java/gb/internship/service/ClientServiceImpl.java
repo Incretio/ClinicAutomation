@@ -32,7 +32,7 @@ public class ClientServiceImpl implements ClientService {
         client.setName(name);
         client.setSecondName(secondName);
         client.setPatronymic(patronymic);
-        client.setBirthDate(Long.valueOf(birthDate));
+        client.setBirthDate(birthDate);
         client.setSex(sex);
         clientRepository.addClient(client);
     }

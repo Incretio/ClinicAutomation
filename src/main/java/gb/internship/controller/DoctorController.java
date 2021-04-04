@@ -5,10 +5,8 @@ import gb.internship.view.Templatable;
 import gb.internship.view.TemplateType;
 
 import javax.inject.Inject;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import java.util.Collections;
 import java.util.Map;
 
@@ -24,6 +22,31 @@ public class DoctorController {
     public String getDoctors() {
         Map<String, Object> variables = Collections.singletonMap("doctors", doctorService.getDoctors());
         return templatable.template(TemplateType.DOCTORS, variables);
+    }
+
+    @GET
+    @Path ("add")
+    public String addDoctorPage() {
+        return templatable.template(TemplateType.EDIT_DOCTOR);
+    }
+
+    @GET
+    @Path ("edit")
+    public String editDoctorPage(@QueryParam("clientId") int clientId) {
+        // ToDo: implement getting client by Id and transfer it to template
+        return templatable.template(TemplateType.EDIT_DOCTOR);
+    }
+
+    @POST
+    @Path ("add")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public void addDoctor(
+            @FormParam("name") String name,
+            @FormParam("secondName") String secondName,
+            @FormParam("patronymic") String patronymic,
+            @FormParam("dateOfEmployment") String dateOfEmployment,
+            @FormParam("specialization") String specialization) {
+        doctorService.setDoctor(name, secondName, patronymic, dateOfEmployment, specialization);
     }
 
     @DELETE

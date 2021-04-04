@@ -41,7 +41,9 @@ public class ClientRepositoryImpl implements ClientRepository {
             session.save(client);
             transaction.commit();
         } finally {
-            if (session != null) session.close();
+            if (session != null) {
+                session.close();
+            }
         }
 
     }

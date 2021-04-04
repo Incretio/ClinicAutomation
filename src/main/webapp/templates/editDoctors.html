@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <title>Список клиентов</title>
+    <style>
+        p { color:  navy; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+                <span class="fs-4">Список клиентов</span>
+            </a>
+
+            <ul class="nav nav-pills">
+                <li class="nav-item"><a th:href="@{/api/schedule}" class="nav-link">Расписание</a></li>
+                <li class="nav-item"><a th:href="@{/api/doctors}" class="nav-link active">Врачи</a></li>
+                <li class="nav-item"><a th:href="@{/api/clients}" class="nav-link">Клиенты</a></li>
+                <li class="nav-item"><a th:href="@{/api/invoices}" class="nav-link">Счета</a></li>
+            </ul>
+        </header>
+    </div>
+    <table align="center" class="table container table-striped table-hover">
+        <thead>
+		<td>
+            <form th:action="@{/api/doctors/add}" method="POST">
+                <p><b>Name:</b><br>
+                <input type="text" name="name" size="40"></p>
+                <p><b>Second name:</b><br>
+                <input type="text" name="secondName" size="40"></p>
+                <p><b>Patronymic:</b><br>
+                <input type="text" name="patronymic" size="40"></p>
+                <p><b>Date Of Employment:</b><br>
+                <input type="text" name="dateOfEmployment" size="40"></p>
+                <p><b>Specialization:</b><br>
+                <input type="text" name="specialization" size="40"></p>
+                <input type="submit" value="Отправить">
+            </form>
+        </td>
+        </thead>
+    </table>
+</body>
+</html>

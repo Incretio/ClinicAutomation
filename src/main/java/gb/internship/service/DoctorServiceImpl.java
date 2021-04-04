@@ -1,9 +1,11 @@
 package gb.internship.service;
 
 import gb.internship.dto.DoctorDto;
+import gb.internship.entity.Client;
+import gb.internship.entity.Doctor;
+import gb.internship.entity.Specialization;
 import gb.internship.repository.DoctorRepository;
 import org.glassfish.jersey.process.internal.RequestScoped;
-import org.hibernate.annotations.common.util.impl.Log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,6 +28,23 @@ public class DoctorServiceImpl implements DoctorService {
                                .map(DoctorDto::new)
                                .collect(Collectors.toList());
     }
+
+    @Override
+    public void setDoctor(String name, String secondName, String patronymic, String dateOfEmployment, String specialization) {
+        Doctor doctor = new Doctor();
+        doctor.setName(name);
+        doctor.setSecondName(secondName);
+        doctor.setPatronymic(patronymic);
+        doctor.setDateOfEmployment(dateOfEmployment);
+        Specialization spec = new Specialization();
+        spec.setId(Integer.parseInt(specialization));
+        doctor.setSpecialization(spec);
+
+        System.out.println(" ------------------------------------ "+ name + secondName + patronymic + dateOfEmployment + spec + specialization);
+
+        doctorRepository.addDoctor(doctor);
+    }
+
 
     @Override
     public void delete(int doctorId) {
