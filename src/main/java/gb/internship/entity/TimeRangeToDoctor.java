@@ -8,7 +8,7 @@ import java.util.Date;
 public class TimeRangeToDoctor {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int id;
     @ManyToOne
     @JoinColumn (name = "doctorId", nullable = false)

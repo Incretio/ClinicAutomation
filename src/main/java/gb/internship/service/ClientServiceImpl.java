@@ -1,6 +1,7 @@
 package gb.internship.service;
 
 import gb.internship.dto.ClientDto;
+import gb.internship.entity.Client;
 import gb.internship.repository.ClientRepository;
 import org.glassfish.jersey.process.internal.RequestScoped;
 import org.slf4j.Logger;
@@ -27,7 +28,13 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public void setClients(String name, String secondName, String patronymic, String birthDate, String sex) {
-        clientRepository.setClients(name, secondName, patronymic, birthDate, sex);
+        Client client = new Client();
+        client.setName(name);
+        client.setSecondName(secondName);
+        client.setPatronymic(patronymic);
+        client.setBirthDate(Long.valueOf(birthDate));
+        client.setSex(sex);
+        clientRepository.addClient(client);
     }
 
     @Override

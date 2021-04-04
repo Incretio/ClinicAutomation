@@ -33,14 +33,8 @@ public class ClientRepositoryImpl implements ClientRepository {
     }
 
     @Override
-    public void setClients(String name, String  secondName, String patronymic, String birthDate, String sex) {
+    public void addClient(Client client) {
         Session session = null;
-        Client client = new Client();
-        client.setName(name);
-        client.setSecondName(secondName);
-        client.setPatronymic(patronymic);
-        client.setBirthDate(Long.valueOf(birthDate));
-        client.setSex(sex);
         try {
             session = repository.openSession();
             Transaction transaction = session.beginTransaction();
