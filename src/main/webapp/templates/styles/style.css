@@ -1,0 +1,8 @@
+.active-row {
+    background-color: #a9f0ff !important;
+}
+
+a #delete-button.disabled {
+    color: gray;
+    pointer-events: none;
+}
