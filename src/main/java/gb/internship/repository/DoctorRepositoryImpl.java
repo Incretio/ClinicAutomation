@@ -35,7 +35,9 @@ public class DoctorRepositoryImpl implements DoctorRepository {
             session.save(doctor);
             transaction.commit();
         } finally {
-            if (session != null) session.close();
+            if (session != null) {
+                session.close();
+            }
         }
     }
 
