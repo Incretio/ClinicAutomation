@@ -11,7 +11,7 @@ let enableDeleteButton = function() {
     $("#delete-button").removeClass("disabled");
 };
 
-var listenOnDeleteButtonClick = function(pkAttributeName, url) {
+var listenOnDeleteButtonClick = function(url) {
     $("#delete-button").on("click", function (event) {
         if (!window.selectedRowId) {
             return;
