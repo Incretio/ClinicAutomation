@@ -64,9 +64,9 @@ public class Client {
         return birthDate;
     }
 
-    public void setBirthDate(Long birthDate) {
+    public void setBirthDate(String birthDate) {
         this.birthDate = new Date();
-        this.birthDate.setTime(birthDate);
+        this.birthDate.setTime(Long.parseLong(birthDate));
     }
 
     public Sex getSex() {
@@ -74,7 +74,7 @@ public class Client {
     }
 
     public void setSex(String sex) {
-        this.sex = sex.equals("m")  ? 'm' : 'f';
+        this.sex = sex.equals("MALE")  ? 'm' : 'f';
     }
 }
 

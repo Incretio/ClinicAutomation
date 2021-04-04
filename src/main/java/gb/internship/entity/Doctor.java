@@ -75,8 +75,9 @@ public class Doctor {
         return dateOfEmployment;
     }
 
-    public void setDateOfEmployment(Date dateOfEmployment) {
-        this.dateOfEmployment = dateOfEmployment;
+    public void setDateOfEmployment(String dateOfEmployment) {
+        this.dateOfEmployment = new Date();
+        this.dateOfEmployment.setTime(Long.parseLong(dateOfEmployment));
     }
 
     public Set<TimeRangeToDoctor> getTimeRangeToDoctors() {

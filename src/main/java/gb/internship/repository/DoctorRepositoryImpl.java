@@ -27,6 +27,19 @@ public class DoctorRepositoryImpl implements DoctorRepository {
     }
 
     @Override
+    public void addDoctor(Doctor doctor) {
+        Session session = null;
+        try {
+            session = repository.openSession();
+            Transaction transaction = session.beginTransaction();
+            session.save(doctor);
+            transaction.commit();
+        } finally {
+            if (session != null) session.close();
+        }
+    }
+
+    @Override
     public void delete(int doctorId) {
         try (Session session = repository.openSession()) {
             Transaction transaction = session.beginTransaction();
