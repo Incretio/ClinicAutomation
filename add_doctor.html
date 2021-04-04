@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head><title>Добавление врача</title>
+
+  <link rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+    integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+    crossorigin="anonymous">
+
+<link rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
+    integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r"
+    crossorigin="anonymous">
+
+<link rel="stylesheet"
+    href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    integrity="sha384-xewr6kSkq3dBbEtB6Z/3oFZmknWn7nHqhLVLrYgzEFRbU/DHSxW7K3B44yWUN60D"
+    crossorigin="anonymous">
+
+</head>
+<body>
+  <div class="container">
+    <h1>Добавление врача</h1>
+
+  <form method="post">
+  <p>ID:
+  <input type="text" name='id' size="60"/></p>
+  <p>Имя:
+  <input type="text" name='Имя' size="60"/></p>
+  <p>Фамилия:
+  <input type="text" name='Фамилия' size="30"/></p>
+  <p>Специализация:<br/>
+  <input type="text" name='Специализация' size="80"/></p>
+  <p>Трудоустроен:<br/>
+  <input type="text" name='Трудоустроен' size="80"/></p>
+  <p><input type="submit" name="Добавить" value="Add">
+  <input type="submit" name="Отменить" value="Cancel">
+  <input type="button" onclick="history.back();" value="Назад"/>
+  </p>
+  </form>
+</body>
+</html>
