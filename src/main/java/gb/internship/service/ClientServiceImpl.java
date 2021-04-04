@@ -34,7 +34,18 @@ public class ClientServiceImpl implements ClientService {
         client.setPatronymic(patronymic);
         client.setBirthDate(birthDate);
         client.setSex(sex);
-        clientRepository.addClient(client);
+        clientRepository.addOrUpdate(client);
+    }
+    @Override
+    public void setClients(int id, String name, String secondName, String patronymic, String birthDate, String sex) {
+        Client client = new Client();
+        client.setId(id);
+        client.setName(name);
+        client.setSecondName(secondName);
+        client.setPatronymic(patronymic);
+        client.setBirthDate(birthDate);
+        client.setSex(sex);
+        clientRepository.addOrUpdate(client);
     }
 
     @Override

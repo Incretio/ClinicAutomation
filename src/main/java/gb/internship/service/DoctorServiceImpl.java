@@ -39,9 +39,6 @@ public class DoctorServiceImpl implements DoctorService {
         Specialization spec = new Specialization();
         spec.setId(Integer.parseInt(specialization));
         doctor.setSpecialization(spec);
-
-        System.out.println(" ------------------------------------ "+ name + secondName + patronymic + dateOfEmployment + spec + specialization);
-
         doctorRepository.addDoctor(doctor);
     }
 

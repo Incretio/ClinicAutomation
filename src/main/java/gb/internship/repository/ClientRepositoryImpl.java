@@ -33,19 +33,23 @@ public class ClientRepositoryImpl implements ClientRepository {
     }
 
     @Override
-    public void addClient(Client client) {
+    public void addOrUpdate(Client client) {
         Session session = null;
         try {
             session = repository.openSession();
             Transaction transaction = session.beginTransaction();
-            session.save(client);
+            if (client.getId() == 0){
+                session.save(client);
+            }
+            else {
+                session.update(client);
+            }
             transaction.commit();
         } finally {
             if (session != null) {
                 session.close();
             }
         }
-
     }
 
     @Override
@@ -57,5 +61,7 @@ public class ClientRepositoryImpl implements ClientRepository {
             transaction.commit();
         }
     }
+
+
 
 }

@@ -32,7 +32,7 @@ public class DoctorController {
 
     @GET
     @Path ("edit")
-    public String editDoctorPage(@QueryParam("clientId") int clientId) {
+    public String editDoctorPage(@QueryParam("doctorId") int doctorId) {
         // ToDo: implement getting client by Id and transfer it to template
         return templatable.template(TemplateType.EDIT_DOCTOR);
     }
