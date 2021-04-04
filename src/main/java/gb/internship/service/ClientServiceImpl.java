@@ -25,6 +25,9 @@ public class ClientServiceImpl implements ClientService {
                 .map(ClientDto::new)
                 .collect(Collectors.toList());
     }
+    public Client getClient(int id) {
+        return clientRepository.getClient(id);
+    }
 
     @Override
     public void setClients(String name, String secondName, String patronymic, String birthDate, String sex) {

@@ -1,5 +1,7 @@
 package gb.internship.controller;
 
+import gb.internship.entity.Client;
+import gb.internship.repository.ClientRepositoryImpl;
 import gb.internship.service.ClientService;
 import gb.internship.view.Templatable;
 import gb.internship.view.TemplateType;
@@ -33,6 +35,8 @@ public class ClientController {
     @GET
     @Path("edit")
     public String editClientPage(@QueryParam("clientId") int clientId) {
+        Client client = clientService.getClient(clientId);
+        System.out.println(client.getId() + " " + client.getName());
         // ToDo: implement getting client by Id and transfer it to template
         return templatable.template(TemplateType.EDIT_CLIENT);
     }
