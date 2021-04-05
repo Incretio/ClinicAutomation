@@ -1,5 +1,7 @@
 package gb.internship.controller;
 
+import gb.internship.entity.Client;
+import gb.internship.repository.ClientRepositoryImpl;
 import gb.internship.service.ClientService;
 import gb.internship.view.Templatable;
 import gb.internship.view.TemplateType;
@@ -10,7 +12,7 @@ import javax.ws.rs.core.MediaType;
 import java.util.Collections;
 import java.util.Map;
 
-@Path ("clients")
+@Path("clients")
 public class ClientController {
 
     @Inject
@@ -25,20 +27,36 @@ public class ClientController {
     }
 
     @GET
-    @Path ("add")
+    @Path("add")
     public String addClientPage() {
         return templatable.template(TemplateType.EDIT_CLIENT);
     }
 
     @GET
-    @Path ("edit")
+    @Path("edit")
     public String editClientPage(@QueryParam("clientId") int clientId) {
+        Client client = clientService.getClient(clientId);
+        System.out.println(client.getId() + " " + client.getName());
         // ToDo: implement getting client by Id and transfer it to template
         return templatable.template(TemplateType.EDIT_CLIENT);
     }
 
     @POST
-    @Path ("add")
+    @Path("edit")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public void editClient(
+            @FormParam("id") int clientId,
+            @FormParam("name") String name,
+            @FormParam("secondName") String secondName,
+            @FormParam("patronymic") String patronymic,
+            @FormParam("birthDate") String birthDate,
+            @FormParam("sex") String sex) {
+        clientService.setClients(clientId, name, secondName, patronymic, birthDate, sex);
+
+    }
+
+    @POST
+    @Path("add")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public void addClient(
             @FormParam("name") String name,

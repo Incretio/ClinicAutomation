@@ -33,19 +33,34 @@ public class ClientRepositoryImpl implements ClientRepository {
     }
 
     @Override
-    public void addClient(Client client) {
+    public Client getClient(int id) {
+        Session session = repository.openSession();
+        Transaction transaction = session.beginTransaction();
+        Query<Client> query = session.createQuery("FROM Client where id=:id", Client.class); //You will get Weayher object
+        query.setParameter("id", id);
+        Client result = query.getSingleResult();
+        transaction.commit();
+        return result;
+    }
+
+    @Override
+    public void addOrUpdate(Client client) {
         Session session = null;
         try {
             session = repository.openSession();
             Transaction transaction = session.beginTransaction();
-            session.save(client);
+            if (client.getId() == 0){
+                session.save(client);
+            }
+            else {
+                session.update(client);
+            }
             transaction.commit();
         } finally {
             if (session != null) {
                 session.close();
             }
         }
-
     }
 
     @Override
@@ -57,5 +72,7 @@ public class ClientRepositoryImpl implements ClientRepository {
             transaction.commit();
         }
     }
+
+
 
 }

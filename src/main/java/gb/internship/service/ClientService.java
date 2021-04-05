@@ -8,7 +8,9 @@ import java.util.List;
 public interface ClientService {
 
     List<ClientDto> getClients();
+    Client getClient(int id);
     void setClients(String name, String  secondName, String patronymic, String birthDate, String sex);
+    void setClients(int id, String name, String  secondName, String patronymic, String birthDate, String sex);
     void delete(int clientId);
 
 }
