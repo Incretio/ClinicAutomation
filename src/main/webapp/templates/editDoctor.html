@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script th:src="@{/templates/lib/jquery-3.6.0.min.js}"></script>
+    <script th:src="@{/templates/js/utils.js}"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <meta charset="utf-8">
     <title>Список клиентов</title>
@@ -27,21 +29,30 @@
     <table align="center" class="table container table-striped table-hover">
         <thead>
 		<td>
-            <form th:action="@{/api/doctors/add}" method="POST">
+            <form id="edit-form" th:action="@{/api/doctors}" method="POST">
+                <p hidden><b>ID:</b><br>
+                <input hidden type="text" name="id" size="40"></p>
                 <p><b>Name:</b><br>
-                <input type="text" name="name" size="40"></p>
+                <input class="form-control" type="text" name="name" size="40"></p>
                 <p><b>Second name:</b><br>
-                <input type="text" name="secondName" size="40"></p>
+                <input class="form-control" type="text" name="secondName" size="40"></p>
                 <p><b>Patronymic:</b><br>
-                <input type="text" name="patronymic" size="40"></p>
+                <input class="form-control" type="text" name="patronymic" size="40"></p>
                 <p><b>Date Of Employment:</b><br>
-                <input type="text" name="dateOfEmployment" size="40"></p>
+                <input class="form-control" type="text" name="dateOfEmployment" size="40"></p>
                 <p><b>Specialization:</b><br>
-                <input type="text" name="specialization" size="40"></p>
-                <input type="submit" value="Отправить">
+                <input class="form-control" type="text" name="specialization" size="40"></p>
+                <input type="submit" class="btn btn-primary" value="Отправить">
             </form>
         </td>
         </thead>
     </table>
 </body>
+
+<script th:inline="javascript"> var contextRoot = /*[[@{/}]]*/ ''; </script>
+
+<script>
+    listenOnSubmitButton(contextRoot + "api/doctors");
+</script>
+
 </html>

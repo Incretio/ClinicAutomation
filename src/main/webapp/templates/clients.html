@@ -30,8 +30,8 @@
     <div class="container">
         <div class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
             <ul class="nav nav-pills">
-                <li class="nav-item"><a th:href="@{/api/clients/add}" class="btn nav-link">Добавить</a></li>
-                <li class="nav-item"><a th:href="@{/api/clients/edit}" class="btn nav-link">Редактировать</a></li>
+                <li class="nav-item"><a id="add-button" href="#" class="btn nav-link">Добавить</a></li>
+                <li class="nav-item"><a id="edit-button" href="#" class="btn nav-link disabled">Редактировать</a></li>
                 <li class="nav-item"><a id="delete-button" href="#" class="btn nav-link disabled">Удалить</a></li>
             </ul>
         </div>
@@ -65,6 +65,9 @@
 
 <script>
     listenOnRowClick();
+    listenOnAddButtonClick(contextRoot + "api/clients/add");
+    listenOnEditButtonClick(contextRoot + "api/clients/edit");
     listenOnDeleteButtonClick(contextRoot + "api/clients/");
+    listenOnSubmitButton(contextRoot + "api/clients");
 </script>
 </html>

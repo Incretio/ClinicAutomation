@@ -1,7 +1,6 @@
 package gb.internship.service;
 
 import gb.internship.dto.DoctorDto;
-import gb.internship.entity.Client;
 import gb.internship.entity.Doctor;
 import gb.internship.entity.Specialization;
 import gb.internship.repository.DoctorRepository;
@@ -30,8 +29,14 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public void setDoctor(String name, String secondName, String patronymic, String dateOfEmployment, String specialization) {
+    public Doctor getDoctor(int id) {
+        return doctorRepository.getDoctor(id);
+    }
+
+    @Override
+    public void saveOrUpdate(int id, String name, String secondName, String patronymic, String dateOfEmployment, String specialization) {
         Doctor doctor = new Doctor();
+        doctor.setId(id);
         doctor.setName(name);
         doctor.setSecondName(secondName);
         doctor.setPatronymic(patronymic);
@@ -39,13 +44,11 @@ public class DoctorServiceImpl implements DoctorService {
         Specialization spec = new Specialization();
         spec.setId(Integer.parseInt(specialization));
         doctor.setSpecialization(spec);
-        doctorRepository.addDoctor(doctor);
+        doctorRepository.saveOrUpdate(doctor);
     }
-
 
     @Override
     public void delete(int doctorId) {
-        logger.info("DoctorId = " + doctorId);
         try {
             doctorRepository.delete(doctorId);
         } catch (EntityNotFoundException e) {

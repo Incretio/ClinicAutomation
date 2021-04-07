@@ -1,5 +1,6 @@
 package gb.internship.controller;
 
+import gb.internship.entity.Doctor;
 import gb.internship.service.DoctorService;
 import gb.internship.view.Templatable;
 import gb.internship.view.TemplateType;
@@ -19,7 +20,7 @@ public class DoctorController {
     private Templatable templatable;
 
     @GET
-    public String getDoctors() {
+    public String doctorsPage() {
         Map<String, Object> variables = Collections.singletonMap("doctors", doctorService.getDoctors());
         return templatable.template(TemplateType.DOCTORS, variables);
     }
@@ -33,25 +34,26 @@ public class DoctorController {
     @GET
     @Path ("edit")
     public String editDoctorPage(@QueryParam("doctorId") int doctorId) {
-        // ToDo: implement getting client by Id and transfer it to template
-        return templatable.template(TemplateType.EDIT_DOCTOR);
+        Doctor doctor = doctorService.getDoctor(doctorId);
+        return templatable.template(TemplateType.EDIT_DOCTOR, Collections.singletonMap("doctor", doctor));
     }
 
     @POST
-    @Path ("add")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public void addDoctor(
+    public void editDoctor(
+            @FormParam("id") @DefaultValue("0") int id,
             @FormParam("name") String name,
             @FormParam("secondName") String secondName,
             @FormParam("patronymic") String patronymic,
             @FormParam("dateOfEmployment") String dateOfEmployment,
             @FormParam("specialization") String specialization) {
-        doctorService.setDoctor(name, secondName, patronymic, dateOfEmployment, specialization);
+        doctorService.saveOrUpdate(id, name, secondName, patronymic, dateOfEmployment, specialization);
     }
 
     @DELETE
-    @Path("{doctorId}")
-    public void delete(@PathParam("doctorId") int doctorId) {
+    @Path("{id}")
+    public void delete(@PathParam("id") int doctorId) {
         doctorService.delete(doctorId);
     }
+
 }
