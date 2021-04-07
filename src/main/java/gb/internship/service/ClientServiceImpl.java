@@ -25,22 +25,13 @@ public class ClientServiceImpl implements ClientService {
                 .map(ClientDto::new)
                 .collect(Collectors.toList());
     }
+
     public Client getClient(int id) {
         return clientRepository.getClient(id);
     }
 
     @Override
-    public void setClients(String name, String secondName, String patronymic, String birthDate, String sex) {
-        Client client = new Client();
-        client.setName(name);
-        client.setSecondName(secondName);
-        client.setPatronymic(patronymic);
-        client.setBirthDate(birthDate);
-        client.setSex(sex);
-        clientRepository.addOrUpdate(client);
-    }
-    @Override
-    public void setClients(int id, String name, String secondName, String patronymic, String birthDate, String sex) {
+    public void saveOrUpdate(int id, String name, String secondName, String patronymic, String birthDate, String sex) {
         Client client = new Client();
         client.setId(id);
         client.setName(name);
@@ -48,17 +39,15 @@ public class ClientServiceImpl implements ClientService {
         client.setPatronymic(patronymic);
         client.setBirthDate(birthDate);
         client.setSex(sex);
-        clientRepository.addOrUpdate(client);
+        clientRepository.saveOrUpdate(client);
     }
 
     @Override
     public void delete(int clientId) {
-
-        logger.info("ClientId = " + clientId);
         try {
             clientRepository.delete(clientId);
         } catch (EntityNotFoundException e) {
-            logger.error("Client doctor by Id ERROR", e);
+            logger.error("Client by Id ERROR", e);
         }
     }
 

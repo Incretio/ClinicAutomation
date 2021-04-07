@@ -8,7 +8,7 @@ public interface ClientRepository {
 
     List<Client> getClients();
     Client getClient(int id);
-    void addOrUpdate(Client client);
+    void saveOrUpdate(Client client);
     void delete(int clientId);
 
 }

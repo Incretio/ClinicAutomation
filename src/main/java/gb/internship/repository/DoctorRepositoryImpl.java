@@ -27,17 +27,17 @@ public class DoctorRepositoryImpl implements DoctorRepository {
     }
 
     @Override
-    public void addDoctor(Doctor doctor) {
-        Session session = null;
-        try {
-            session = repository.openSession();
+    public Doctor getDoctor(int id) {
+        Session session = repository.openSession();
+        return session.get(Doctor.class, id);
+    }
+
+    @Override
+    public void saveOrUpdate(Doctor doctor) {
+        try (Session session = repository.openSession()) {
             Transaction transaction = session.beginTransaction();
-            session.save(doctor);
+            session.saveOrUpdate(doctor);
             transaction.commit();
-        } finally {
-            if (session != null) {
-                session.close();
-            }
         }
     }
 

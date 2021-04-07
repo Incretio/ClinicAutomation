@@ -5,7 +5,7 @@ public enum TemplateType {
     CLIENTS("templates/clients.html"),
     EDIT_CLIENT("templates/editClient.html"),
     DOCTORS("templates/doctors.html"),
-    EDIT_DOCTOR("templates/editDoctors.html");
+    EDIT_DOCTOR("templates/editDoctor.html");
 
     private final String templatePath;
 
