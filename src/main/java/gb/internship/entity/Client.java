@@ -1,6 +1,8 @@
 package gb.internship.entity;
 
 import javax.persistence.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -66,7 +68,12 @@ public class Client {
 
     public void setBirthDate(String birthDate) {
         this.birthDate = new Date();
-        this.birthDate.setTime(Long.parseLong(birthDate));
+        SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            this.birthDate = formater.parse(birthDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     public Sex getSex() {

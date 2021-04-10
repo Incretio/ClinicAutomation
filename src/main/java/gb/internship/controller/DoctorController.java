@@ -33,9 +33,8 @@ public class DoctorController {
 
     @GET
     @Path ("edit")
-    public String editDoctorPage(@QueryParam("doctorId") int doctorId) {
-        Doctor doctor = doctorService.getDoctor(doctorId);
-        return templatable.template(TemplateType.EDIT_DOCTOR, Collections.singletonMap("doctor", doctor));
+    public String editDoctorPage(@QueryParam("id") int doctorId) {
+        return templatable.template(TemplateType.EDIT_DOCTOR, Collections.singletonMap("doctor", doctorService.getDoctor(doctorId)));
     }
 
     @POST

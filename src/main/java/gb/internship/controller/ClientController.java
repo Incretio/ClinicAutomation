@@ -1,5 +1,6 @@
 package gb.internship.controller;
 
+import gb.internship.entity.Client;
 import gb.internship.service.ClientService;
 import gb.internship.view.Templatable;
 import gb.internship.view.TemplateType;
@@ -32,7 +33,7 @@ public class ClientController {
 
     @GET
     @Path("edit")
-    public String editClientPage(@QueryParam("clientId") int clientId) {
+    public String editClientPage(@QueryParam("id") int clientId) {
         Map<String, Object> variables = Collections.singletonMap("client", clientService.getClient(clientId));
         return templatable.template(TemplateType.EDIT_CLIENT, variables);
     }
