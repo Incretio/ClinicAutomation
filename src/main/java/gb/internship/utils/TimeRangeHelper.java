@@ -9,7 +9,7 @@ public class TimeRangeHelper {
     private static DateTime startDateTime = new DateTime(2000, 1, 1, 0, 0);
 
     public static int toDaysPast(Date date) {
-        DateTime dateTime = new DateTime(date.getTime()).minus(startDateTime.getMillis());
+        DateTime dateTime = new DateTime(date.getTime() - startDateTime.getMillis());
         return dateTimeToDays(dateTime);
     }
 
@@ -18,7 +18,7 @@ public class TimeRangeHelper {
     }
 
     private static int dateTimeToDays(DateTime dateTime) {
-        return (int) dateTime.getMillis() / 1000 / 60 / 60 / 24;
+        return (int) (dateTime.getMillis() / 1000 / 60 / 60 / 24);
     }
 
 

@@ -6,3 +6,8 @@ a #delete-button.disabled {
     color: gray;
     pointer-events: none;
 }
+
+.working-time {
+    border: solid black 2px !important;
+    background-color: darkblue !important;
+}
