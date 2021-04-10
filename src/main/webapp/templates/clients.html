@@ -1,30 +1,30 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
     <script th:src="@{/templates/lib/jquery-3.6.0.min.js}"></script>
     <script th:src="@{/templates/js/utils.js}"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <link th:href="@{/templates/styles/style.css}" rel="stylesheet">
     <meta charset="utf-8">
     <title>Список клиентов</title>
     <style>
-        p { color:  navy; }
+        p {
+            color: navy;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
             <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-                <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+                <svg class="bi me-2" width="40" height="32">
+                    <use xlink:href="#bootstrap"></use>
+                </svg>
                 <span class="fs-4">Список клиентов</span>
             </a>
 
-            <ul class="nav nav-pills">
-                <li class="nav-item"><a th:href="@{/api/schedule}" class="nav-link">Расписание</a></li>
-                <li class="nav-item"><a th:href="@{/api/doctors}" class="nav-link">Врачи</a></li>
-                <li class="nav-item"><a th:href="@{/api/clients}" class="nav-link active">Клиенты</a></li>
-                <li class="nav-item"><a th:href="@{/api/invoices}" class="nav-link">Счета</a></li>
-            </ul>
+            <ul th:replace="/templates/include.html :: nav_menu"></ul>
         </header>
     </div>
     <div class="container">
@@ -48,20 +48,19 @@
         </tr>
         </thead>
         <tbody>
-            <tr th:each="client: ${clients}" class="clickable-row" th:data-id="${client.id}">
-                <th scope="row" th:text="${client.id}" />
-                <td th:text="${client.name}" />
-                <td th:text="${client.secondName}" />
-                <td th:text="${client.patronymic}" />
-                <td th:text="${client.birthDate}" />
-                <td th:text="${client.sex}" />
-            </tr>
+        <tr th:each="client: ${clients}" class="clickable-row" th:data-id="${client.id}">
+            <th scope="row" th:text="${client.id}"/>
+            <td th:text="${client.name}"/>
+            <td th:text="${client.secondName}"/>
+            <td th:text="${client.patronymic}"/>
+            <td th:text="${client.birthDate}"/>
+            <td th:text="${client.sex}"/>
+        </tr>
         </tbody>
     </table>
-
 </body>
 
-<script th:inline="javascript"> var contextRoot = /*[[@{/}]]*/ ''; </script>
+<script th:inline="javascript"> let contextRoot = /*[[@{/}]]*/ ''; </script>
 
 <script>
     listenOnRowClick();

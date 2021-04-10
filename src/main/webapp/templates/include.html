@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<body>
+    <ul class="nav nav-pills" th:fragment="nav_menu">
+        <li class="nav-item"><a th:href="@{/api/schedule}" class="nav-link" th:classappend="${#strings.contains(#httpServletRequest.requestURI, 'schedule')} ? 'active'">Расписание</a></li>
+        <li class="nav-item"><a th:href="@{/api/doctors}" class="nav-link" th:classappend="${#strings.contains(#httpServletRequest.requestURI, 'doctors')} ? 'active'">Врачи</a></li>
+        <li class="nav-item"><a th:href="@{/api/clients}" class="nav-link" th:classappend="${#strings.contains(#httpServletRequest.requestURI, 'clients')} ? 'active'">Клиенты</a></li>
+        <li class="nav-item"><a th:href="@{/api/invoices}" class="nav-link" th:classappend="${#strings.contains(#httpServletRequest.requestURI, 'invoices')} ? 'active'">Счета</a></li>
+    </ul>
+</body>
+</html>
