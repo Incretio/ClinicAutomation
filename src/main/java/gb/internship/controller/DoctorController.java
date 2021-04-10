@@ -1,5 +1,6 @@
 package gb.internship.controller;
 
+import gb.internship.dto.ScheduleDoctor;
 import gb.internship.entity.Doctor;
 import gb.internship.entity.TimeRangeToDoctor;
 import gb.internship.service.DoctorService;
