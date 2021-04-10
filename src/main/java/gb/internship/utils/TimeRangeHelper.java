@@ -21,5 +21,10 @@ public class TimeRangeHelper {
         return (int) (dateTime.getMillis() / 1000 / 60 / 60 / 24);
     }
 
+    public static int takeMonday(int weekOffset) {
+        int now = TimeRangeHelper.toDaysPast(new Date());
+        int withOffset = now + (weekOffset * 7);
+        return (withOffset - (new DateTime().getDayOfWeek() - 1));
+    }
 
 }

@@ -5,7 +5,6 @@ import gb.internship.entity.Doctor;
 import gb.internship.entity.TimeRangeToDoctor;
 import gb.internship.repository.DoctorRepository;
 import gb.internship.utils.TimeRangeHelper;
-import org.joda.time.DateTime;
 
 import javax.inject.Inject;
 import java.util.*;
@@ -15,13 +14,12 @@ public class ScheduleDoctorServiceImpl implements ScheduleDoctorService {
     @Inject
     private DoctorRepository doctorRepository;
 
-    public Map<String, List<Boolean>> takeScheduleDoctor(int doctorId) {
+    public Map<String, List<Boolean>> takeScheduleDoctor(int doctorId, int weekOffset) {
         Doctor doctor = doctorRepository.getDoctor(doctorId);
         Set<TimeRangeToDoctor> timeRangeToDoctors = doctor.getTimeRangeToDoctors();
-        int now = TimeRangeHelper.toDaysPast(new Date());
 
         ScheduleDoctor scheduleDoctor = new ScheduleDoctor();
-        int monday = now - (new DateTime().getDayOfWeek() - 1);
+        int monday = TimeRangeHelper.takeMonday(weekOffset);
         for (int i = 0; i < 7; i++) {
             int dayNumber = monday + i;
             System.out.println(dayNumber);
@@ -50,8 +48,6 @@ public class ScheduleDoctorServiceImpl implements ScheduleDoctorService {
         return data;
     }
 
-
-
     private List<Boolean> takeSchedule(ScheduleDoctor scheduleDoctor, String startTime, String stopTime ) {
         List<Boolean> result = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
@@ -59,4 +55,5 @@ public class ScheduleDoctorServiceImpl implements ScheduleDoctorService {
         }
         return result;
     }
+
 }

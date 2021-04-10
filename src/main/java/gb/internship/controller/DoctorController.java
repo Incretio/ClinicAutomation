@@ -64,11 +64,14 @@ public class DoctorController {
 
     @GET
     @Path("schedule")
-    public String scheduleDoctorPage(@QueryParam("doctorId") int doctorId) {
+    public String scheduleDoctorPage(
+            @QueryParam("doctorId") int doctorId,
+            @QueryParam("dateOffset") @DefaultValue("0") int weekOffset) {
         Map<String, Object> variables = new HashMap<>();
-        Map<String, List<Boolean>> scheduleDoctor = scheduleDoctorService.takeScheduleDoctor(doctorId);
+        Map<String, List<Boolean>> scheduleDoctor = scheduleDoctorService.takeScheduleDoctor(doctorId, weekOffset);
         variables.put("scheduleDoctor", scheduleDoctor);
         variables.put("doctor", doctorService.getDoctor(doctorId));
+        variables.put("monday", TimeRangeHelper.takeMonday(weekOffset));
         return templatable.template(TemplateType.SCHEDULE_DOCTOR, variables);
     }
 

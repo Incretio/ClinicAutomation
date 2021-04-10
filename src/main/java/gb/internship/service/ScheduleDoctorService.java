@@ -5,6 +5,6 @@ import java.util.Map;
 
 public interface ScheduleDoctorService {
 
-    Map<String, List<Boolean>> takeScheduleDoctor(int doctorId);
+    Map<String, List<Boolean>> takeScheduleDoctor(int doctorId, int weekOffset);
 
 }
