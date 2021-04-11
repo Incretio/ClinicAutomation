@@ -1,6 +1,8 @@
 package gb.internship.entity;
 
 import javax.persistence.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Set;
 
@@ -63,8 +65,8 @@ public class Doctor {
         this.patronymic = patronymic;
     }
 
-    public Specialization getSpecialization() {
-        return specialization;
+    public int getSpecialization() {
+        return specialization.getId();
     }
 
     public void setSpecialization(Specialization specialization) {
@@ -77,7 +79,12 @@ public class Doctor {
 
     public void setDateOfEmployment(String dateOfEmployment) {
         this.dateOfEmployment = new Date();
-        this.dateOfEmployment.setTime(Long.parseLong(dateOfEmployment));
+        SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+            this.dateOfEmployment = formater.parse(dateOfEmployment);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     public Set<TimeRangeToDoctor> getTimeRangeToDoctors() {

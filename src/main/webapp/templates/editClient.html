@@ -23,23 +23,30 @@
     </div>
     <table align="center" class="table container table-striped table-hover">
         <thead>
+		<tr th:each="client: ${client}" th:data-id="${client.id}">
         <td>
             <form id="edit-form" th:action="@{/api/clients}" method="POST">
                 <p hidden><b>ID:</b><br>
-                <input hidden type="text" name="id" size="40"></p>
+                <input hidden type="text" name="id" th:value="${client.id}" size="40"></p>
                 <p><b>Name:</b><br>
-                <input class="form-control" type="text" name="name" size="40"></p>
+                <input class="form-control" type="text" name="name" th:value="${client.name}" size="40"></p>
                 <p><b>Second name:</b><br>
-                <input class="form-control" type="text" name="secondName" size="40"></p>
+                <input class="form-control" type="text" name="secondName" th:value="${client.secondName}" size="40"></p>
                 <p><b>Patronymic:</b><br>
-                <input class="form-control" type="text" name="patronymic" size="40"></p>
+                <input class="form-control" type="text" name="patronymic" th:value="${client.patronymic}" size="40"></p>
                 <p><b>Birth date:</b><br>
-                <input class="form-control" type="text" name="birthDate" size="40"></p>
+                <input class="form-control" type="text" name="birthDate" th:value="${client.birthDate}" size="40"></p>
                 <p><b>Sex:</b><br>
-                <input class="form-control" type="text" name="sex" size="40"></p>
+				<select class="form-select" name="sex">
+				  <option selected value="MALE">MALE</option>
+				  <option value="FEMALE">FEMALE</option>
+				</select></p><br>	
                 <input type="submit" class="btn btn-primary" value="Отправить">
             </form>
+         
+        
         </td>
+		</tr>
         </thead>
     </table>
 </body>
@@ -47,7 +54,7 @@
 <script th:inline="javascript"> let contextRoot = /*[[@{/}]]*/ ''; </script>
 
 <script>
-    listenOnSubmitButton(contextRoot + "api/clients");
+    listenOnSubmitButton(contextRoot + "api/clients/");
 </script>
 
 </html>

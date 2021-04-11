@@ -27,12 +27,13 @@ public class ClientController {
     @GET
     @Path("add")
     public String addClientPage() {
-        return templatable.template(TemplateType.EDIT_CLIENT);
+        Map<String, Object> variables = Collections.singletonMap("client", clientService.getZeroClient());
+        return templatable.template(TemplateType.EDIT_CLIENT, variables);
     }
 
     @GET
     @Path("edit")
-    public String editClientPage(@QueryParam("clientId") int clientId) {
+    public String editClientPage(@QueryParam("id") int clientId) {
         Map<String, Object> variables = Collections.singletonMap("client", clientService.getClient(clientId));
         return templatable.template(TemplateType.EDIT_CLIENT, variables);
     }
