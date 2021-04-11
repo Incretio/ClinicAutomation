@@ -28,6 +28,19 @@
 
     <table class="table container table-striped table-hover">
         <thead>
+
+        <tr>
+            <th scope="col"></th>
+            <th scope="col"> <a th:href="'?doctorId=' + ${doctorId} + '&weekOffset=' + (${weekOffset} - 1)"> <<< </a> </th>
+            <th colspan="5" scope="col"></th>
+            <th scope="col"> <a th:href="'?doctorId=' + ${doctorId} + '&weekOffset=' + (${weekOffset} + 1)"> >>> </a> </th>
+        </tr>
+
+        <th scope="col"></th>
+        <div th:each="weekDay: ${weekDays}">
+            <th class="date-line" th:text="${weekDay}" scope="col"></th>
+        </div>
+
         <tr>
             <th scope="col">Время</th>
             <th scope="col">Пн</th>
@@ -41,21 +54,33 @@
         </thead>
         <tbody>
             <tr th:each="schedule: ${scheduleDoctor}" class="clickable-row">
-                <th scope="row"    th:text="${schedule.key}" />
-                <td id="monday"    th:data-week-day="${monday}"     th:class="'day-cell ' + (${schedule.value[0]} ? 'working-time' : '')"}/>
-                <td id="tuesday"   th:data-week-day="${monday + 1}" th:class="'day-cell ' + (${schedule.value[1]} ? 'working-time' : '')"}/>
-                <td id="wednesday" th:data-week-day="${monday + 2}" th:class="'day-cell ' + (${schedule.value[2]} ? 'working-time' : '')"}/>
-                <td id="thursday"  th:data-week-day="${monday + 3}" th:class="'day-cell ' + (${schedule.value[3]} ? 'working-time' : '')"}/>
-                <td id="friday"    th:data-week-day="${monday + 4}" th:class="'day-cell ' + (${schedule.value[4]} ? 'working-time' : '')"}/>
-                <td id="saturday"  th:data-week-day="${monday + 5}" th:class="'day-cell ' + (${schedule.value[5]} ? 'working-time' : '')"}/>
-                <td id="sunday"    th:data-week-day="${monday + 6}" th:class="'day-cell ' + (${schedule.value[6]} ? 'working-time' : '')"}/>
+                <th scope="row" th:text="${schedule.key.start} + ' - ' + ${schedule.key.stop}" />
+                <td th:data-time-range-id="${schedule.key.id}" th:data-date-of-receipt="${monday}"      th:class="'day-cell ' + (${schedule.value[0]} ? 'working-time' : '')"}/>
+                <td th:data-time-range-id="${schedule.key.id}" th:data-date-of-receipt="${monday + 1}"  th:class="'day-cell ' + (${schedule.value[1]} ? 'working-time' : '')"}/>
+                <td th:data-time-range-id="${schedule.key.id}" th:data-date-of-receipt="${monday + 2}"  th:class="'day-cell ' + (${schedule.value[2]} ? 'working-time' : '')"}/>
+                <td th:data-time-range-id="${schedule.key.id}" th:data-date-of-receipt="${monday + 3}"  th:class="'day-cell ' + (${schedule.value[3]} ? 'working-time' : '')"}/>
+                <td th:data-time-range-id="${schedule.key.id}" th:data-date-of-receipt="${monday + 4}"  th:class="'day-cell ' + (${schedule.value[4]} ? 'working-time' : '')"}/>
+                <td th:data-time-range-id="${schedule.key.id}" th:data-date-of-receipt="${monday + 5}"  th:class="'day-cell ' + (${schedule.value[5]} ? 'working-time' : '')"}/>
+                <td th:data-time-range-id="${schedule.key.id}" th:data-date-of-receipt="${monday + 6}"  th:class="'day-cell ' + (${schedule.value[6]} ? 'working-time' : '')"}/>
             </tr>
         </tbody>
 
     </table>
 
 </body>
+
+<script th:inline="javascript">
+    let contextRoot = /*[[@{/}]]*/ '';
+    let doctorId =  /*[[${doctorId}]]*/ '';
+</script>
+
 <script>
-    $('.day-cell').click(function() { $(this).toggleClass("working-time")});
+    $('.day-cell').click(function() {
+        let $element = $(this);
+        $element.toggleClass("working-time");
+        let timeRangeId = $element.data("timeRangeId");
+        let dateOfReceipt = $element.data("dateOfReceipt");
+        toggleCellScheduleDoctor(contextRoot + "api/doctors/schedule/", doctorId, timeRangeId, dateOfReceipt)
+    });
 </script>
 </html>

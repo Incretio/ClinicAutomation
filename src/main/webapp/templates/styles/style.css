@@ -11,3 +11,11 @@ a #delete-button.disabled {
     border: solid black 2px !important;
     background-color: darkblue !important;
 }
+
+tr,th {
+    text-align: center !important;
+}
+
+.date-line {
+    padding-bottom: 0px  !important;
+}

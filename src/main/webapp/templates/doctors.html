@@ -44,7 +44,6 @@
         </thead>
         <tbody>
 
-		
 		<tr th:each="doctor: ${doctors}" class="clickable-row" th:data-id="${doctor.id}">
             <th scope="row" th:text="${doctor.id}" />
             <td th:text="${doctor.name}" />

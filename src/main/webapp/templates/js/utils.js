@@ -78,3 +78,11 @@ let listenOnSubmitButton = function(url) {
         })});
 };
 
+let toggleCellScheduleDoctor = function(url, doctorId, timeRangeId, dateOfReceipt) {
+    let xhr = new XMLHttpRequest();
+    let data = "doctorId=" + doctorId + "&timeRangeId=" + timeRangeId + "&dateOfReceipt=" + dateOfReceipt;
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.send(data);
+    // var formData = new FormData();
+};

@@ -2,7 +2,10 @@ package gb.internship.utils;
 
 import org.joda.time.DateTime;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class TimeRangeHelper {
 
@@ -25,6 +28,16 @@ public class TimeRangeHelper {
         int now = TimeRangeHelper.toDaysPast(new Date());
         int withOffset = now + (weekOffset * 7);
         return (withOffset - (new DateTime().getDayOfWeek() - 1));
+    }
+
+    public static List<String> takeWeekDays(int monday) {
+        List<String> result = new ArrayList<>();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yy");
+        for (int i = 0; i < 7; i++) {
+            Date date = TimeRangeHelper.toDate(monday + i);
+            result.add(simpleDateFormat.format(date));
+        }
+        return result;
     }
 
 }

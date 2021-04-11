@@ -49,4 +49,5 @@ public class TimeRangeToDoctor {
     public void setDateOfReceipt(int dateOfReceipt) {
         this.dateOfReceipt = dateOfReceipt;
     }
+
 }

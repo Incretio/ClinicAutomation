@@ -1,19 +1,20 @@
 package gb.internship.controller;
 
-import gb.internship.dto.ScheduleDoctor;
 import gb.internship.entity.Doctor;
-import gb.internship.entity.TimeRangeToDoctor;
+import gb.internship.entity.TimeRange;
 import gb.internship.service.DoctorService;
 import gb.internship.service.ScheduleDoctorService;
 import gb.internship.utils.TimeRangeHelper;
 import gb.internship.view.Templatable;
 import gb.internship.view.TemplateType;
-import org.joda.time.DateTime;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Path ("doctors")
 public class DoctorController {
@@ -66,13 +67,26 @@ public class DoctorController {
     @Path("schedule")
     public String scheduleDoctorPage(
             @QueryParam("doctorId") int doctorId,
-            @QueryParam("dateOffset") @DefaultValue("0") int weekOffset) {
+            @QueryParam("weekOffset") @DefaultValue("0") int weekOffset) {
         Map<String, Object> variables = new HashMap<>();
-        Map<String, List<Boolean>> scheduleDoctor = scheduleDoctorService.takeScheduleDoctor(doctorId, weekOffset);
+        Map<TimeRange, List<Boolean>> scheduleDoctor = scheduleDoctorService.takeScheduleDoctor(doctorId, weekOffset);
         variables.put("scheduleDoctor", scheduleDoctor);
         variables.put("doctor", doctorService.getDoctor(doctorId));
         variables.put("monday", TimeRangeHelper.takeMonday(weekOffset));
+        int monday = TimeRangeHelper.takeMonday(weekOffset);
+        variables.put("weekDays", TimeRangeHelper.takeWeekDays(monday));
+        variables.put("weekOffset", weekOffset);
+        variables.put("doctorId", doctorId);
         return templatable.template(TemplateType.SCHEDULE_DOCTOR, variables);
+    }
+
+    @POST
+    @Path("schedule")
+    public void toggleSchedule(
+            @FormParam("doctorId") int doctorId,
+            @FormParam("timeRangeId") int timeRangeId,
+            @FormParam("dateOfReceipt") int dateOfReceipt) {
+        scheduleDoctorService.toggleCellScheduleDoctor(doctorId, timeRangeId, dateOfReceipt);
     }
 
 }
