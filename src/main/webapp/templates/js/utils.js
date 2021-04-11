@@ -5,6 +5,7 @@ var listenOnRowClick = function() {
         currentRow.addClass("active-row").siblings().removeClass("active-row");
         enableDeleteButton();
         enableEditButton();
+        enableScheduleDoctorButton();
     });
 };
 
@@ -14,6 +15,13 @@ let enableDeleteButton = function() {
 
 let enableEditButton = function() {
     $("#edit-button").removeClass("disabled");
+};
+
+let enableScheduleDoctorButton = function() {
+    var $schedule = $("#schedule-button");
+    if ($schedule) {
+        $schedule.removeClass("disabled");
+    }
 };
 
 let listenOnDeleteButtonClick = function(url) {
@@ -49,6 +57,13 @@ let listenOnAddButtonClick = function(url) {
     })
 };
 
+let listenOnScheduleButtonClick = function(url) {
+    $("#schedule-button").on("click", function (event) {
+        event.preventDefault();
+        document.location = url + "?doctorId=" + window.selectedRowId;
+    })
+};
+
 let listenOnSubmitButton = function(url) {
     let editForm = $("#edit-form");
     editForm.submit(function(event) {
@@ -63,3 +78,11 @@ let listenOnSubmitButton = function(url) {
         })});
 };
 
+let toggleCellScheduleDoctor = function(url, doctorId, timeRangeId, dateOfReceipt) {
+    let xhr = new XMLHttpRequest();
+    let data = "doctorId=" + doctorId + "&timeRangeId=" + timeRangeId + "&dateOfReceipt=" + dateOfReceipt;
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.send(data);
+    // var formData = new FormData();
+};

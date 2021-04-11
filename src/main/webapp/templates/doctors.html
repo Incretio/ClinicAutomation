@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
     <script th:src="@{/templates/lib/jquery-3.6.0.min.js}"></script>
     <script th:src="@{/templates/js/utils.js}"></script>
@@ -19,18 +19,13 @@
                 <span class="fs-4">Список врачей</span>
             </a>
 
-            <ul class="nav nav-pills">
-                <li class="nav-item"><a th:href="@{/api/schedule}" class="nav-link">Расписание</a></li>
-                <li class="nav-item"><a th:href="@{/api/doctors}" class="nav-link active">Врачи</a></li>
-                <li class="nav-item"><a th:href="@{/api/clients}" class="nav-link">Клиенты</a></li>
-                <li class="nav-item"><a th:href="@{/api/invoices}" class="nav-link">Счета</a></li>
-            </ul>
+            <ul th:replace="/templates/include.html :: nav_menu"></ul>
         </header>
     </div>
     <div class="container">
         <div class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
             <ul class="nav nav-pills">
-                <li class="nav-item"><a href="#" class="btn nav-link">Редактор расписания</a></li>
+                <li class="nav-item"><a id="schedule-button" href="#" class="btn nav-link disabled">Редактор расписания</a></li>
                 <li class="nav-item"><a id="add-button" href="#" class="btn nav-link">Добавить</a></li>
                 <li class="nav-item"><a id="edit-button" href="#" class="btn nav-link disabled">Редактировать</a></li>
                 <li class="nav-item"><a id="delete-button" href="#" class="btn nav-link disabled">Удалить</a></li>
@@ -49,7 +44,6 @@
         </thead>
         <tbody>
 
-		
 		<tr th:each="doctor: ${doctors}" class="clickable-row" th:data-id="${doctor.id}">
             <th scope="row" th:text="${doctor.id}" />
             <td th:text="${doctor.name}" />
@@ -61,10 +55,11 @@
         </tbody>
     </table>
 </body>
-<script th:inline="javascript"> var contextRoot = /*[[@{/}]]*/ ''; </script>
+<script th:inline="javascript"> let contextRoot = /*[[@{/}]]*/ ''; </script>
 
 <script>
     listenOnRowClick();
+    listenOnScheduleButtonClick(contextRoot + "api/doctors/schedule");
     listenOnAddButtonClick(contextRoot + "api/doctors/add");
     listenOnEditButtonClick(contextRoot + "api/doctors/edit");
     listenOnDeleteButtonClick(contextRoot + "api/doctors/");

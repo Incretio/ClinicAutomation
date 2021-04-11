@@ -16,7 +16,7 @@ public class TimeRangeToDoctor {
     @ManyToOne
     @JoinColumn (name = "timeRangeId", nullable = false)
     private TimeRange timeRange;
-    private Date dateOfReceipt;
+    private int dateOfReceipt;
 
     public int getId() {
         return id;
@@ -42,11 +42,12 @@ public class TimeRangeToDoctor {
         this.timeRange = timeRange;
     }
 
-    public Date getDateOfReceipt() {
+    public int getDateOfReceipt() {
         return dateOfReceipt;
     }
 
-    public void setDateOfReceipt(Date dateOfReceipt) {
+    public void setDateOfReceipt(int dateOfReceipt) {
         this.dateOfReceipt = dateOfReceipt;
     }
+
 }
