@@ -29,8 +29,6 @@ public class ClientController {
     @Path("add")
     public String addClientPage() {
         Map<String, Object> variables = Collections.singletonMap("client", clientService.getZeroClient());
-        System.out.println(clientService.getClient(5).getBirthDate());
-        System.out.println(clientService.getZeroClient().getBirthDate());
         return templatable.template(TemplateType.EDIT_CLIENT, variables);
     }
 
