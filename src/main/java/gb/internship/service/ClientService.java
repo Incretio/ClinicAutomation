@@ -9,6 +9,9 @@ public interface ClientService {
 
     List<ClientDto> getClients();
     Client getClient(int id);
+
+    Client getZeroClient();
+
     void saveOrUpdate(int id, String name, String  secondName, String patronymic, String birthDate, String sex);
     void delete(int clientId);
 

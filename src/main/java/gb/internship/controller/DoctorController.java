@@ -28,7 +28,8 @@ public class DoctorController {
     @GET
     @Path ("add")
     public String addDoctorPage() {
-        return templatable.template(TemplateType.EDIT_DOCTOR);
+        return templatable.template(TemplateType.EDIT_DOCTOR, Collections.singletonMap("doctor", doctorService.getZeroDoctor()));
+
     }
 
     @GET

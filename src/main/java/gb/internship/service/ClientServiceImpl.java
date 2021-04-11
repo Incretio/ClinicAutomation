@@ -26,8 +26,18 @@ public class ClientServiceImpl implements ClientService {
                 .collect(Collectors.toList());
     }
 
+    @Override
     public Client getClient(int id) {
         return clientRepository.getClient(id);
+    }
+    @Override
+    public Client getZeroClient() {
+        Client client = new Client();
+        client.setId(0);
+        client.setPatronymic("");
+        client.setName("");
+        client.setSecondName("");
+        return client;
     }
 
     @Override

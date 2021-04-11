@@ -9,6 +9,7 @@ public interface DoctorService {
 
     List<DoctorDto> getDoctors();
     Doctor getDoctor(int id);
+    Doctor getZeroDoctor();
     void saveOrUpdate(int id, String name, String  secondName, String patronymic, String dateOfEmployment, String specialization);
     void delete(int doctorId);
 }

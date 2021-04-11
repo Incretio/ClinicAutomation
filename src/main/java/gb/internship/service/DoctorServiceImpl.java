@@ -34,6 +34,19 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
+    public Doctor getZeroDoctor() {
+        Doctor doctor = new Doctor();
+        doctor.setId(0);
+        doctor.setPatronymic("");
+        doctor.setName("");
+        doctor.setSecondName("");
+        Specialization spec = new Specialization();
+        spec.setId(1);
+        doctor.setSpecialization(spec);
+        return doctor;
+    }
+
+    @Override
     public void saveOrUpdate(int id, String name, String secondName, String patronymic, String dateOfEmployment, String specialization) {
         Doctor doctor = new Doctor();
         doctor.setId(id);
