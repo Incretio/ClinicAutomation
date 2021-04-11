@@ -1,5 +1,6 @@
 package gb.internship.controller;
 
+import gb.internship.entity.Client;
 import gb.internship.service.ClientService;
 import gb.internship.view.Templatable;
 import gb.internship.view.TemplateType;
