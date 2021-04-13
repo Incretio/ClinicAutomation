@@ -37,23 +37,25 @@
                 <p><b>Birth date:</b><br>
                 <input class="form-control" type="text" name="birthDate" th:value="${client.birthDate}" size="40"></p>
                 <p><b>Sex:</b><br>
-				<select class="form-select" name="sex">
-				  <option selected value="MALE">MALE</option>
-				  <option value="FEMALE">FEMALE</option>
+				<select id="select-sex" class="form-select" name="sex">
+				   <option value="MALE">MALE</option>
+				   <option value="FEMALE">FEMALE</option>
 				</select></p><br>	
                 <input type="submit" class="btn btn-primary" value="Отправить">
             </form>
-         
-        
         </td>
 		</tr>
         </thead>
     </table>
 </body>
 
-<script th:inline="javascript"> let contextRoot = /*[[@{/}]]*/ ''; </script>
+<script th:inline="javascript">
+    let contextRoot = /*[[@{/}]]*/ '';
+    let sex = /*[[${client.sex}]]*/ '';
+</script>
 
 <script>
+    $("#select-sex").val(sex);
     listenOnSubmitButton(contextRoot + "api/clients/");
 </script>
 
