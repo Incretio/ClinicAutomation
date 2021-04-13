@@ -3,6 +3,8 @@ package gb.internship.dto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import gb.internship.entity.Doctor;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DoctorDto {
@@ -12,6 +14,7 @@ public class DoctorDto {
     private String patronymic;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
     private Date dateOfEmployment;
+    private int specialization;
 
     public DoctorDto(Doctor doctor) {
         this.id = doctor.getId();
@@ -19,6 +22,7 @@ public class DoctorDto {
         this.secondName = doctor.getSecondName();
         this.patronymic = doctor.getPatronymic();
         this.dateOfEmployment = doctor.getDateOfEmployment();
+        this.specialization = doctor.getSpecialization();
     }
 
     public int getId() {
@@ -59,6 +63,24 @@ public class DoctorDto {
 
     public void setDateOfEmployment(Date dateOfEmployment) {
         this.dateOfEmployment = dateOfEmployment;
+    }
+
+    public int getSpecialization() {
+        return specialization;
+    }
+
+    public void setSpecialization(int specialization) {
+        this.specialization = specialization;
+    }
+
+    // format: dd-MM-yyyy
+    public void setDateOfEmployment(String dateValue) throws ParseException {
+        this.dateOfEmployment = new SimpleDateFormat("yyyy-MM-dd").parse(dateValue);
+    }
+
+    // format: dd-MM-yyyy
+    public String getDateOfEmploymentIso() throws ParseException {
+        return new SimpleDateFormat("yyyy-MM-dd").format(dateOfEmployment);
     }
 
 }

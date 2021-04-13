@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import javax.persistence.EntityNotFoundException;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -47,7 +48,7 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public void saveOrUpdate(int id, String name, String secondName, String patronymic, String dateOfEmployment, String specialization) {
+    public void saveOrUpdate(int id, String name, String secondName, String patronymic, Date dateOfEmployment, String specialization) {
         Doctor doctor = new Doctor();
         doctor.setId(id);
         doctor.setName(name);
