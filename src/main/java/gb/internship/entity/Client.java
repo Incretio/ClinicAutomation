@@ -66,14 +66,8 @@ public class Client {
         return birthDate;
     }
 
-    public void setBirthDate(String birthDate) {
-        this.birthDate = new Date();
-        SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            this.birthDate = formater.parse(birthDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
     }
 
     public Sex getSex() {

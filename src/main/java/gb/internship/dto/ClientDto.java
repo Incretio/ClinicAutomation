@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import gb.internship.entity.Client;
 import gb.internship.entity.Sex;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ClientDto {
@@ -58,6 +60,11 @@ public class ClientDto {
 
     public Date getBirthDate() {
         return birthDate;
+    }
+
+    // format: dd-MM-yyyy
+    public String getBirthDateIso() throws ParseException {
+        return new SimpleDateFormat("yyyy-MM-dd").format(birthDate);
     }
 
     public void setBirthDate(Date birthDate) {

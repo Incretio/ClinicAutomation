@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import javax.persistence.EntityNotFoundException;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,7 +43,7 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public void saveOrUpdate(int id, String name, String secondName, String patronymic, String birthDate, String sex) {
+    public void saveOrUpdate(int id, String name, String secondName, String patronymic, Date birthDate, String sex) {
         Client client = new Client();
         client.setId(id);
         client.setName(name);

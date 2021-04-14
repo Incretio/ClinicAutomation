@@ -35,7 +35,7 @@
                 <p><b>Patronymic:</b><br>
                 <input class="form-control" type="text" name="patronymic" th:value="${client.patronymic}" size="40"></p>
                 <p><b>Birth date:</b><br>
-                <input class="form-control" type="text" name="birthDate" th:value="${client.birthDate}" size="40"></p>
+                <input class="form-control" type="date" name="birthDate" th:value="${client.birthDateIso}" size="40"></p>
                 <p><b>Sex:</b><br>
 				<select id="select-sex" class="form-select" name="sex">
 				   <option value="MALE">MALE</option>
