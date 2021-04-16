@@ -39,7 +39,7 @@
                 <p><b>Date Of Employment:</b><br>
                 <input class="form-control" type="date" name="dateOfEmployment" th:value="${doctor.dateOfEmployment}" size="40"></p>
                 <p><b>Specialization:</b><br>
-                    <select class="form-control" name="specialization">
+                    <select class="form-control form-select" name="specialization">
                         <option th:if="${doctor.id == 0}" disabled selected>-</option>
                         <option th:each="specialization : ${specializations}" th:value="${specialization.getId()}" th:text="${specialization.getName()}"
                                 th:selected="${doctor.getSpecialization() == specialization.getId()} ? 'true' : 'false'"></option>
