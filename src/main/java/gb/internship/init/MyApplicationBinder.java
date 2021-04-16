@@ -16,6 +16,9 @@ public class MyApplicationBinder extends AbstractBinder {
         bind(DoctorRepositoryImpl.class).to(DoctorRepository.class);
         bind(ScheduleDoctorServiceImpl.class).to(ScheduleDoctorService.class);
 
+        bind(SpecializationRepositoryImpl.class).to(SpecializationRepository.class);
+        bind(SpecializationServiceImpl.class).to(SpecializationService.class);
+
         bind(TemplateImpl.class).to(Templatable.class);
         bind(RepositoryImpl.class).to(Repository.class);
     }
