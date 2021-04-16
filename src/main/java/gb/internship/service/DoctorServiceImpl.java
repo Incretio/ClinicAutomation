@@ -42,13 +42,13 @@ public class DoctorServiceImpl implements DoctorService {
         doctor.setName("");
         doctor.setSecondName("");
         Specialization spec = new Specialization();
-        spec.setId(1);
+        spec.setId(0);
         doctor.setSpecialization(spec);
         return doctor;
     }
 
     @Override
-    public void saveOrUpdate(int id, String name, String secondName, String patronymic, Date dateOfEmployment, String specialization) {
+    public void saveOrUpdate(int id, String name, String secondName, String patronymic, Date dateOfEmployment, int specialization) {
         Doctor doctor = new Doctor();
         doctor.setId(id);
         doctor.setName(name);
@@ -56,7 +56,7 @@ public class DoctorServiceImpl implements DoctorService {
         doctor.setPatronymic(patronymic);
         doctor.setDateOfEmployment(dateOfEmployment);
         Specialization spec = new Specialization();
-        spec.setId(Integer.parseInt(specialization));
+        spec.setId(specialization);
         doctor.setSpecialization(spec);
         doctorRepository.saveOrUpdate(doctor);
     }

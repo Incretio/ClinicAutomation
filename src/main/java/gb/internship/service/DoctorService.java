@@ -11,6 +11,6 @@ public interface DoctorService {
     List<DoctorDto> getDoctors();
     Doctor getDoctor(int id);
     Doctor getZeroDoctor();
-    void saveOrUpdate(int id, String name, String  secondName, String patronymic, Date dateOfEmployment, String specialization);
+    void saveOrUpdate(int id, String name, String  secondName, String patronymic, Date dateOfEmployment, int specialization);
     void delete(int doctorId);
 }
