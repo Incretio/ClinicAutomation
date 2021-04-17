@@ -77,14 +77,8 @@ public class Doctor {
         return dateOfEmployment;
     }
 
-    public void setDateOfEmployment(String dateOfEmployment) {
-        this.dateOfEmployment = new Date();
-        SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        try {
-            this.dateOfEmployment = formater.parse(dateOfEmployment);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+    public void setDateOfEmployment(Date dateOfEmployment) {
+        this.dateOfEmployment = dateOfEmployment;
     }
 
     public Set<TimeRangeToDoctor> getTimeRangeToDoctors() {

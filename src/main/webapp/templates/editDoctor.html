@@ -11,6 +11,7 @@
     </style>
 </head>
 <body>
+
     <div class="container">
         <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
             <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
@@ -36,19 +37,25 @@
                 <p><b>Patronymic:</b><br>
                 <input class="form-control" type="text" name="patronymic" th:value="${doctor.patronymic}" size="40"></p>
                 <p><b>Date Of Employment:</b><br>
-                <input class="form-control" type="text" name="dateOfEmployment" th:value="${doctor.dateOfEmployment}" size="40"></p>
+                <input class="form-control" type="date" name="dateOfEmployment" th:value="${doctor.dateOfEmployment}" size="40"></p>
                 <p><b>Specialization:</b><br>
-                <input class="form-control" type="text" name="specialization" th:value="${doctor.specialization}" size="40"></p>
+                    <select class="form-control form-select" name="specialization">
+                        <option th:if="${doctor.id == 0}" disabled selected>-</option>
+                        <option th:each="specialization : ${specializations}" th:value="${specialization.getId()}" th:text="${specialization.getName()}"
+                                th:selected="${doctor.getSpecialization() == specialization.getId()} ? 'true' : 'false'"></option>
+                    </select>
+                </p>
                 <input type="submit" class="btn btn-primary" value="Отправить">
             </form>
         </td>
 		</tr>
-		
         </thead>
     </table>
 </body>
 
-<script th:inline="javascript"> let contextRoot = /*[[@{/}]]*/ ''; </script>
+<script th:inline="javascript">
+    let contextRoot = /*[[@{/}]]*/ '';
+</script>
 
 <script>
     listenOnSubmitButton(contextRoot + "api/doctors");

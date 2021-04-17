@@ -1,9 +1,10 @@
 package gb.internship.controller;
 
-import gb.internship.entity.Doctor;
+import gb.internship.dto.DoctorDto;
 import gb.internship.entity.TimeRange;
 import gb.internship.service.DoctorService;
 import gb.internship.service.ScheduleDoctorService;
+import gb.internship.service.SpecializationService;
 import gb.internship.utils.TimeRangeHelper;
 import gb.internship.view.Templatable;
 import gb.internship.view.TemplateType;
@@ -11,10 +12,9 @@ import gb.internship.view.TemplateType;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Path ("doctors")
 public class DoctorController {
@@ -23,6 +23,8 @@ public class DoctorController {
     private DoctorService doctorService;
     @Inject
     private ScheduleDoctorService scheduleDoctorService;
+    @Inject
+    private SpecializationService specializationService;
     @Inject
     private Templatable templatable;
 
@@ -35,14 +37,20 @@ public class DoctorController {
     @GET
     @Path ("add")
     public String addDoctorPage() {
-        return templatable.template(TemplateType.EDIT_DOCTOR, Collections.singletonMap("doctor", doctorService.getZeroDoctor()));
+        HashMap<String, Object> variables = new HashMap<>();
+        variables.put("doctor", doctorService.getZeroDoctor());
+        variables.put("specializations", specializationService.getSpecializations());
+        return templatable.template(TemplateType.EDIT_DOCTOR, variables);
 
     }
 
     @GET
     @Path ("edit")
     public String editDoctorPage(@QueryParam("id") int doctorId) {
-        return templatable.template(TemplateType.EDIT_DOCTOR, Collections.singletonMap("doctor", doctorService.getDoctor(doctorId)));
+        HashMap<String, Object> variables = new HashMap<>();
+        variables.put("doctor", doctorService.getDoctor(doctorId));
+        variables.put("specializations", specializationService.getSpecializations());
+        return templatable.template(TemplateType.EDIT_DOCTOR, variables);
     }
 
     @POST
@@ -53,8 +61,10 @@ public class DoctorController {
             @FormParam("secondName") String secondName,
             @FormParam("patronymic") String patronymic,
             @FormParam("dateOfEmployment") String dateOfEmployment,
-            @FormParam("specialization") String specialization) {
-        doctorService.saveOrUpdate(id, name, secondName, patronymic, dateOfEmployment, specialization);
+            @FormParam("specialization") int specialization) throws ParseException {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date dateOfEmploymentDate = formatter.parse(dateOfEmployment);
+        doctorService.saveOrUpdate(id, name, secondName, patronymic, dateOfEmploymentDate, specialization);
     }
 
     @DELETE
