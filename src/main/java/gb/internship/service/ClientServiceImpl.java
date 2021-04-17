@@ -38,6 +38,7 @@ public class ClientServiceImpl implements ClientService {
         client.setPatronymic("");
         client.setName("");
         client.setSecondName("");
+        client.setBirthDate(new Date());
         client.setSex("MALE");
         return client;
     }

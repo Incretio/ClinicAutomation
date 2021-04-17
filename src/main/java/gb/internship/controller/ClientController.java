@@ -31,7 +31,8 @@ public class ClientController {
     @GET
     @Path("add")
     public String addClientPage() {
-        Map<String, Object> variables = Collections.singletonMap("client", clientService.getZeroClient());
+        ClientDto clientDto = new ClientDto(clientService.getZeroClient());
+        Map<String, Object> variables = Collections.singletonMap("client", clientDto);
         return templatable.template(TemplateType.EDIT_CLIENT, variables);
     }
 
