@@ -30,6 +30,11 @@ public class TimeRangeHelper {
         return (withOffset - (new DateTime().getDayOfWeek() - 1));
     }
 
+    public static int takeDayPast(int dayOffset) {
+        int now = TimeRangeHelper.toDaysPast(new Date());
+        return now + dayOffset;
+    }
+
     public static List<String> takeWeekDays(int monday) {
         List<String> result = new ArrayList<>();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yy");

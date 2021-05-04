@@ -1,8 +1,11 @@
 package gb.internship.repository;
 
+import gb.internship.dto.DoctorDto;
 import gb.internship.entity.Doctor;
+import gb.internship.entity.ScheduleRecord;
 import gb.internship.entity.TimeRange;
 import gb.internship.entity.TimeRangeToDoctor;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -23,6 +26,7 @@ public class DoctorRepositoryImpl implements DoctorRepository {
             Transaction transaction = session.beginTransaction();
             Query<Doctor> query = session.createQuery("from Doctor", Doctor.class); //You will get Weayher object
             List<Doctor> result = query.list();
+            result.forEach(doctor -> Hibernate.initialize(doctor.getTimeRangeToDoctors()));
             transaction.commit();
             return result;
         }
@@ -74,6 +78,28 @@ public class DoctorRepositoryImpl implements DoctorRepository {
             saveOrUpdateTimeRangeToDoctor(doctorId, timeRangeId, dateOfReceipt);
         } else {
             deleteTimeRangeToDoctor(timeRangeToDoctorList.get(0).getId());
+        }
+    }
+
+    @Override
+    public List<TimeRangeToDoctor> getAllTimeRangeToDoctor() {
+        try (Session session = repository.openSession()) {
+            Transaction transaction = session.beginTransaction();
+            Query<TimeRangeToDoctor> query = session.createQuery("from TimeRangeToDoctor", TimeRangeToDoctor.class); //You will get Weayher object
+            List<TimeRangeToDoctor> result = query.list();
+            transaction.commit();
+            return result;
+        }
+    }
+
+    @Override
+    public List<ScheduleRecord> getAllScheduleRecord() {
+        try (Session session = repository.openSession()) {
+            Transaction transaction = session.beginTransaction();
+            Query<ScheduleRecord> query = session.createQuery("from ScheduleRecord", ScheduleRecord.class); //You will get Weayher object
+            List<ScheduleRecord> result = query.list();
+            transaction.commit();
+            return result;
         }
     }
 

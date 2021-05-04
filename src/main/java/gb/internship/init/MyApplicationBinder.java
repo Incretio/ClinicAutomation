@@ -21,5 +21,8 @@ public class MyApplicationBinder extends AbstractBinder {
 
         bind(TemplateImpl.class).to(Templatable.class);
         bind(RepositoryImpl.class).to(Repository.class);
+
+        bind(ScheduleServiceImpl.class).to(ScheduleService.class);
+        bind(ScheduleRepositoryImpl.class).to(ScheduleRepository.class);
     }
 }

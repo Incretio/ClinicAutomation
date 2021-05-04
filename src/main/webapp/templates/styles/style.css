@@ -17,5 +17,25 @@ tr,th {
 }
 
 .date-line {
-    padding-bottom: 0px  !important;
+    padding-bottom: 0  !important;
+}
+
+.not-work-cell {
+    border: solid black 1px !important;
+    background-color: #f1f1f1 !important;
+}
+
+.free-record-cell {
+    border: solid black 1px !important;
+    background-color: #cce6cc !important;
+}
+
+.any-record-cell {
+    border: solid black 1px !important;
+    background-color: #cac8c8 !important;
+}
+
+.my-record-cell {
+    border: solid black 1px !important;
+    background-color: #abe4ab !important;
 }

@@ -13,14 +13,14 @@ public class Service {
     private String name;
     private double price;
     @ManyToMany(mappedBy = "services")
-    private Set<Invoice> invoices;
+    private Set<ScheduleRecord> scheduleRecords;
 
-    public Set<Invoice> getInvoices() {
-        return invoices;
+    public Set<ScheduleRecord> getScheduleRecords() {
+        return scheduleRecords;
     }
 
-    public void setInvoices(Set<Invoice> invoices) {
-        this.invoices = invoices;
+    public void setScheduleRecords(Set<ScheduleRecord> scheduleRecords) {
+        this.scheduleRecords = scheduleRecords;
     }
 
     public int getId() {

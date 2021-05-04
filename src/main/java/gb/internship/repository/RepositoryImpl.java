@@ -20,7 +20,7 @@ public class RepositoryImpl implements Repository {
         Configuration configure = new Configuration();
         configure.addAnnotatedClass(Client.class);
         configure.addAnnotatedClass(Doctor.class);
-        configure.addAnnotatedClass(Invoice.class);
+        configure.addAnnotatedClass(ScheduleRecord.class);
         configure.addAnnotatedClass(Service.class);
         configure.addAnnotatedClass(Specialization.class);
         configure.addAnnotatedClass(TimeRange.class);

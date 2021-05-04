@@ -1,8 +1,6 @@
 package gb.internship.entity;
 
 import javax.persistence.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Set;
 
@@ -16,12 +14,13 @@ public class Doctor {
     private String name;
     private String secondName;
     private String patronymic;
+    private Date dateOfEmployment;
+
     @ManyToOne
     @JoinColumn(name = "specializationId", nullable = false)
     private Specialization specialization;
-    @OneToMany(mappedBy = "doctor")
-    private Set<Invoice> invoices;
-    private Date dateOfEmployment;
+//    @OneToMany(mappedBy = "doctor")
+//    private Set<ScheduleRecord> scheduleRecords;
     @OneToMany(mappedBy = "doctor")
     private Set<TimeRangeToDoctor> timeRangeToDoctors;
 
@@ -33,13 +32,13 @@ public class Doctor {
         this.id = id;
     }
 
-    public Set<Invoice> getInvoices() {
-        return invoices;
-    }
+//    public Set<ScheduleRecord> getScheduleRecords() {
+//        return scheduleRecords;
+//    }
 
-    public void setInvoices(Set<Invoice> invoices) {
-        this.invoices = invoices;
-    }
+//    public void setScheduleRecords(Set<ScheduleRecord> scheduleRecords) {
+//        this.scheduleRecords = scheduleRecords;
+//    }
 
     public String getName() {
         return name;
@@ -88,4 +87,5 @@ public class Doctor {
     public void setTimeRangeToDoctors(Set<TimeRangeToDoctor> timeRangeToDoctors) {
         this.timeRangeToDoctors = timeRangeToDoctors;
     }
+
 }

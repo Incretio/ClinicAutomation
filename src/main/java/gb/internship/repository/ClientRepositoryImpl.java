@@ -1,6 +1,7 @@
 package gb.internship.repository;
 
 import gb.internship.entity.Client;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -17,18 +18,22 @@ public class ClientRepositoryImpl implements ClientRepository {
 
     @Override
     public List<Client> getClients() {
-        Session session = repository.openSession();
-        Transaction transaction = session.beginTransaction();
-        Query<Client> query = session.createQuery("FROM Client", Client.class); //You will get Weayher object
-        List<Client> result = query.list();
-        transaction.commit();
-        return result;
+        try (Session session = repository.openSession()) {
+            Transaction transaction = session.beginTransaction();
+            Query<Client> query = session.createQuery("FROM Client", Client.class); //You will get Weayher object
+            List<Client> result = query.list();
+            transaction.commit();
+            return result;
+        }
     }
 
     @Override
     public Client getClient(int id) {
-        Session session = repository.openSession();
-        return session.get(Client.class, id);
+        try (Session session = repository.openSession()) {
+            Client client = session.get(Client.class, id);
+            Hibernate.initialize(client.getScheduleRecords());
+            return client;
+        }
     }
 
     @Override

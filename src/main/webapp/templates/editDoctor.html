@@ -37,7 +37,7 @@
                 <p><b>Patronymic:</b><br>
                 <input class="form-control" type="text" name="patronymic" th:value="${doctor.patronymic}" size="40"></p>
                 <p><b>Date Of Employment:</b><br>
-                <input class="form-control" type="date" name="dateOfEmployment" th:value="${doctor.dateOfEmployment}" size="40"></p>
+                <input class="form-control" type="date" name="dateOfEmployment" th:value="${doctor.dateOfEmploymentIso}" size="40"></p>
                 <p><b>Specialization:</b><br>
                     <select class="form-control form-select" name="specialization">
                         <option th:if="${doctor.id == 0}" disabled selected>-</option>

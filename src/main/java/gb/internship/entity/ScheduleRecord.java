@@ -4,12 +4,13 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table (name = "Invoice")
-public class Invoice {
+@Table (name = "ScheduleRecord")
+public class ScheduleRecord {
 
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int id;
+
     @ManyToOne
     @JoinColumn (name = "clientId", nullable = false)
     private Client client;
@@ -21,8 +22,8 @@ public class Invoice {
     private TimeRangeToDoctor timeRangeToDoctor;
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
-        name = "InvoiceToService",
-        joinColumns = { @JoinColumn(name = "invoiceId") },
+        name = "ScheduleRecordToService",
+        joinColumns = { @JoinColumn(name = "scheduleRecordId") },
         inverseJoinColumns = { @JoinColumn(name = "serviceId") }
     )
     private Set<Service> services;
@@ -43,27 +44,27 @@ public class Invoice {
         this.timeRangeToDoctor = timeRangeToDoctor;
     }
 
-    public Client getClient() {
-        return client;
-    }
+//    public Client getClient() {
+//        return client;
+//    }
 
-    public void setClient(Client client) {
-        this.client = client;
-    }
+//    public void setClient(Client client) {
+//        this.client = client;
+//    }
 
-    public Doctor getDoctor() {
-        return doctor;
-    }
+//    public Doctor getDoctor() {
+//        return doctor;
+//    }
 
-    public void setDoctor(Doctor doctor) {
-        this.doctor = doctor;
-    }
+//    public void setDoctor(Doctor doctor) {
+//        this.doctor = doctor;
+//    }
 
-    public Set<Service> getServices() {
-        return services;
-    }
-
-    public void setServices(Set<Service> services) {
-        this.services = services;
-    }
+//    public Set<Service> getServices() {
+//        return services;
+//    }
+//
+//    public void setServices(Set<Service> services) {
+//        this.services = services;
+//    }
 }

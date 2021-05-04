@@ -1,8 +1,6 @@
 package gb.internship.entity;
 
 import javax.persistence.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,22 +11,15 @@ public class Client {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int id;
-    @OneToMany(mappedBy = "client")
-    private Set<Invoice> invoices = new HashSet<>();
     private String name;
     private String secondName;
     private String patronymic;
+    private char sex;
     @Temporal(TemporalType.DATE)
     private Date birthDate;
-    private char sex;
 
-    public Set<Invoice> getInvoices() {
-        return invoices;
-    }
-
-    public void setInvoices(Set<Invoice> invoices) {
-        this.invoices = invoices;
-    }
+    @OneToMany(mappedBy = "client")
+    private Set<ScheduleRecord> scheduleRecords = new HashSet<>();
 
     public int getId() {
         return id;
@@ -76,6 +67,14 @@ public class Client {
 
     public void setSex(String sex) {
         this.sex = sex.equals("MALE")  ? 'm' : 'f';
+    }
+
+    public Set<ScheduleRecord> getScheduleRecords() {
+        return scheduleRecords;
+    }
+
+    public void setScheduleRecords(Set<ScheduleRecord> scheduleRecords) {
+        this.scheduleRecords = scheduleRecords;
     }
 }
 

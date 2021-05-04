@@ -38,7 +38,7 @@ public class DoctorController {
     @Path ("add")
     public String addDoctorPage() {
         HashMap<String, Object> variables = new HashMap<>();
-        variables.put("doctor", doctorService.getZeroDoctor());
+        variables.put("doctor", new DoctorDto(doctorService.getZeroDoctor()));
         variables.put("specializations", specializationService.getSpecializations());
         return templatable.template(TemplateType.EDIT_DOCTOR, variables);
 
@@ -48,7 +48,7 @@ public class DoctorController {
     @Path ("edit")
     public String editDoctorPage(@QueryParam("id") int doctorId) {
         HashMap<String, Object> variables = new HashMap<>();
-        variables.put("doctor", doctorService.getDoctor(doctorId));
+        variables.put("doctor", new DoctorDto(doctorService.getDoctor(doctorId)));
         variables.put("specializations", specializationService.getSpecializations());
         return templatable.template(TemplateType.EDIT_DOCTOR, variables);
     }

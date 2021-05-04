@@ -21,7 +21,7 @@ public class DoctorDto {
         this.name = doctor.getName();
         this.secondName = doctor.getSecondName();
         this.patronymic = doctor.getPatronymic();
-        this.dateOfEmployment = doctor.getDateOfEmployment();
+        this.dateOfEmployment = (doctor.getDateOfEmployment() == null) ? new Date() : doctor.getDateOfEmployment();
         this.specialization = doctor.getSpecialization();
     }
 
