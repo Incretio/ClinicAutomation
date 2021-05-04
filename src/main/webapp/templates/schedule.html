@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <script th:src="@{/templates/lib/jquery-3.6.0.min.js}"></script>
     <script th:src="@{/templates/js/utils.js}"></script>
@@ -20,14 +20,21 @@
         </header>
     </div>
 
+    <div class="container">
+        <label><b>Клиент:</b></label>
+        <select id="client-select" class="form-control form-select" name="client-select">
+            <option th:each="currentClient : ${clients}" th:value="${currentClient.id}"
+                    th:text="${currentClient.name + ' ' + currentClient.secondName + ' ' + currentClient.patronymic}"
+                    th:selected="${currentClient.id == clientId} ? 'true' : 'false'"></option>
+        </select>
+    </div>
+
     <table class="table container table-hover">
         <thead>
         <tr>
             <th scope="col"></th>
             <th scope="col"> <a th:href="'?clientId=' + ${clientId} + '&dayOffset=' + (${dayOffset} - 1)"> <<< </a> </th>
-<!--            <th colspan="2" scope="col"></th>-->
             <th scope="col" th:text="${currentDate}"></th>
-<!--            <th colspan="2" scope="col"></th>-->
             <th scope="col"> <a th:href="'?clientId=' + ${clientId} + '&dayOffset=' + (${dayOffset} + 1)"> >>> </a> </th>
         </tr>
 
@@ -56,7 +63,7 @@
 
 <script th:inline="javascript">
     let contextRoot = /*[[@{/}]]*/ '';
-    let clientId =  /*[[${clientId}]]*/ '';
+    let dayOffset = /*[[${dayOffset}]]*/ '';
 </script>
 
 <script>
@@ -81,14 +88,9 @@
     $('.schedule-cell').each(function() {
         $(this).addClass(takeCellClass(this.dataset.scheduleCellType));
         $(this).html(takeCellContent(this.dataset.scheduleCellType));
-    })
+    });
 
-    // $('.day-cell').click(function() {
-    //     let $element = $(this);
-    //     $element.toggleClass("working-time");
-    //     let timeRangeId = $element.data("timeRangeId");
-    //     let dateOfReceipt = $element.data("dateOfReceipt");
-    //     toggleCellScheduleDoctor(contextRoot + "api/doctors/schedule/", doctorId, timeRangeId, dateOfReceipt)
-    // });
+    changeOnSwitchClient(contextRoot + "api/schedule", dayOffset);
+
 </script>
 </html>

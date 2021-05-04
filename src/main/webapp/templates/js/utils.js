@@ -64,6 +64,12 @@ let listenOnScheduleButtonClick = function(url) {
     })
 };
 
+let changeOnSwitchClient = function (url, dayOffset) {
+    $("#client-select").change(function (event) {
+        document.location = url + "?clientId=" + event.target.value + "&dayOffset=" + dayOffset;
+    })
+};
+
 let listenOnSubmitButton = function(url) {
     let editForm = $("#edit-form");
     editForm.submit(function(event) {
@@ -84,5 +90,5 @@ let toggleCellScheduleDoctor = function(url, doctorId, timeRangeId, dateOfReceip
     xhr.open("POST", url, true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.send(data);
-    // var formData = new FormData();
 };
+
